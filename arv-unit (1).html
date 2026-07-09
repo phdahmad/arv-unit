@@ -1,0 +1,1930 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>وحدة السجلات الأكاديمية والتحقق — Academic Records &amp; Verification Unit</title>
+<meta name="description" content="مشروع إعادة هندسة خدمات إرسال المستندات ومصادقة المؤهلات في عمادة القبول والتسجيل بجامعة أم القرى.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --forest: #1A3A2E;
+    --forest-dark: #0F2820;
+    --burnt: #C8632A;
+    --burnt-soft: #E08A54;
+    --gold: #D4A958;
+    --gold-soft: #E8CB8B;
+    --cream: #F4EDE0;
+    --cream-warm: #EFE6D2;
+    --cream-cool: #FAF6EC;
+    --paper: #FDFAF3;
+    --ink: #1F1A15;
+    --ink-soft: #4A4238;
+    --ink-muted: #7A7268;
+    --border: rgba(31, 26, 21, 0.12);
+    --border-strong: rgba(31, 26, 21, 0.22);
+
+    --font-display: 'Cormorant Garamond', 'Amiri', 'Times New Roman', serif;
+    --font-body: 'Tajawal', 'Segoe UI', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Consolas', monospace;
+
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-24: 6rem;
+
+    --content-max: 1200px;
+    --content-narrow: 780px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Selection */
+  ::selection { background: var(--gold-soft); color: var(--forest-dark); }
+
+  /* Focus */
+  :focus-visible {
+    outline: 2px solid var(--burnt);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  a { color: var(--burnt); text-decoration: none; transition: color 0.2s; }
+  a:hover { color: var(--forest); }
+
+  /* ─── TOP NAV ─────────────────────────────────────── */
+  .topnav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(253, 250, 243, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .topnav-inner {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 0.9rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--forest);
+    letter-spacing: 0.01em;
+  }
+  .brand-mark {
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid var(--forest);
+    display: grid;
+    place-items: center;
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--forest);
+    font-size: 0.85rem;
+    letter-spacing: -0.05em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.75rem;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+  }
+  .nav-links a {
+    color: var(--ink-soft);
+    font-weight: 500;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .nav-links a:hover { color: var(--forest); border-bottom-color: var(--burnt); }
+
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+  }
+
+  /* ─── HERO ────────────────────────────────────────── */
+  .hero {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 5rem 2rem 4rem;
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 4rem;
+    align-items: end;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 2.5rem;
+    right: 2rem;
+    left: 2rem;
+    height: 1px;
+    background: linear-gradient(to left, transparent, var(--border) 20%, var(--border) 80%, transparent);
+  }
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: var(--burnt);
+    text-transform: uppercase;
+    margin: 0 0 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    background: var(--burnt);
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+    font-weight: 500;
+    line-height: 1.05;
+    margin: 0 0 1.25rem;
+    color: var(--forest-dark);
+    letter-spacing: -0.015em;
+  }
+  .hero-title .accent {
+    font-style: italic;
+    color: var(--burnt);
+    font-weight: 400;
+  }
+  .hero-sub-en {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    color: var(--ink-soft);
+    font-style: italic;
+    font-weight: 400;
+    margin: 0 0 2rem;
+    direction: ltr;
+    text-align: right;
+    letter-spacing: 0.005em;
+  }
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    line-height: 1.85;
+    max-width: 42em;
+    margin: 0 0 2rem;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.82rem;
+    color: var(--ink-muted);
+    flex-wrap: wrap;
+  }
+  .hero-meta span strong {
+    display: block;
+    color: var(--forest);
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 0.15rem;
+    font-family: var(--font-display);
+  }
+
+  .hero-side {
+    background: var(--cream-warm);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    position: relative;
+  }
+  .hero-side::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    width: 60px;
+    height: 60px;
+    background: var(--forest);
+    clip-path: polygon(100% 0, 100% 100%, 0 0);
+  }
+  .hero-side-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    margin: 0 0 1rem;
+  }
+  .hero-side-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--forest);
+    margin: 0 0 1.25rem;
+    line-height: 1.3;
+    font-weight: 600;
+  }
+  .hero-quote {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    margin: 0 0 1.25rem;
+    padding-right: 1rem;
+    border-right: 2px solid var(--gold);
+  }
+  .hero-side-meta {
+    font-size: 0.82rem;
+    color: var(--ink-muted);
+    padding-top: 1rem;
+    border-top: 1px dashed var(--border-strong);
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 1.5rem 2.5rem; }
+    .hero::before { display: none; }
+  }
+
+  /* ─── SECTION SHELL ───────────────────────────────── */
+  section {
+    scroll-margin-top: 80px;
+  }
+  .container {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .container-narrow {
+    max-width: var(--content-narrow);
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .section-band {
+    padding: 5rem 0;
+  }
+  .section-band.dark {
+    background: var(--forest-dark);
+    color: var(--cream);
+  }
+  .section-band.dark h2, .section-band.dark h3 { color: var(--cream); }
+  .section-band.dark .section-eyebrow { color: var(--gold); }
+  .section-band.dark .section-eyebrow::before { background: var(--gold); }
+  .section-band.dark .section-title .accent { color: var(--gold); }
+  .section-band.cream {
+    background: var(--cream);
+  }
+
+  .section-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: var(--burnt);
+    text-transform: uppercase;
+    margin: 0 0 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    background: var(--burnt);
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 2.85rem);
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--forest-dark);
+    margin: 0 0 1rem;
+    letter-spacing: -0.01em;
+  }
+  .section-title .accent {
+    font-style: italic;
+    color: var(--burnt);
+  }
+  .section-lead {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    line-height: 1.85;
+    max-width: 46em;
+    margin: 0 0 3rem;
+  }
+
+  /* ─── PROBLEM SECTION ─────────────────────────────── */
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .problem-item {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    padding: 1.75rem 1.5rem;
+    position: relative;
+  }
+  .problem-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 2.5rem;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+  .problem-item h4 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--forest);
+    margin: 0 0 0.5rem;
+    font-weight: 600;
+  }
+  .problem-item p {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .problem-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 520px) {
+    .problem-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ─── SERVICES ────────────────────────────────────── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .service-card {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    padding: 2.5rem 2.25rem;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+  .service-card:hover {
+    border-color: var(--burnt);
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4px;
+    height: 60px;
+    background: var(--burnt);
+  }
+  .service-card.verify::before {
+    background: var(--gold);
+  }
+  .service-num {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .service-title {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--forest-dark);
+    margin: 0 0 0.35rem;
+    line-height: 1.2;
+  }
+  .service-title-en {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--burnt);
+    direction: ltr;
+    text-align: right;
+    margin: 0 0 1.5rem;
+    letter-spacing: 0.01em;
+  }
+  .service-desc {
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+    line-height: 1.8;
+    margin: 0 0 1.75rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .service-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .service-features li {
+    padding-right: 1.5rem;
+    position: relative;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .service-features li::before {
+    content: '';
+    position: absolute;
+    top: 0.55rem;
+    right: 0;
+    width: 6px;
+    height: 6px;
+    background: var(--burnt);
+    border-radius: 50%;
+  }
+  .service-card.verify .service-features li::before { background: var(--gold); }
+
+  @media (max-width: 800px) {
+    .services-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ─── LIFECYCLE ───────────────────────────────────── */
+  .lifecycle {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 3rem;
+    background: var(--paper);
+    border: 1px solid var(--border);
+  }
+  .life-step {
+    padding: 2rem 1.5rem;
+    border-left: 1px solid var(--border);
+    position: relative;
+  }
+  .life-step:last-child { border-left: none; }
+  .life-step-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 3rem;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .life-step h4 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--forest);
+    margin: 0 0 0.5rem;
+    font-weight: 600;
+  }
+  .life-step p {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .lifecycle { grid-template-columns: repeat(2, 1fr); }
+    .life-step:nth-child(1), .life-step:nth-child(2) { border-bottom: 1px solid var(--border); }
+    .life-step:nth-child(2), .life-step:nth-child(4) { border-left: none; }
+  }
+  @media (max-width: 520px) {
+    .lifecycle { grid-template-columns: 1fr; }
+    .life-step { border-left: none; border-bottom: 1px solid var(--border); }
+    .life-step:last-child { border-bottom: none; }
+  }
+
+  /* ─── FORMS PREVIEW ───────────────────────────────── */
+  .forms-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .form-preview {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .form-preview-head {
+    background: var(--forest);
+    color: var(--cream);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .form-preview.verify .form-preview-head {
+    background: var(--burnt);
+  }
+  .form-preview-head h4 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    margin: 0;
+    font-weight: 600;
+    color: var(--cream);
+  }
+  .form-preview-tag {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    padding: 0.25rem 0.6rem;
+    background: rgba(255,255,255,0.15);
+    border-radius: 3px;
+  }
+  .form-preview-body {
+    padding: 1.75rem 1.5rem;
+  }
+  .form-section-block {
+    margin-bottom: 1.5rem;
+  }
+  .form-section-block:last-child { margin-bottom: 0; }
+  .form-section-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    margin: 0 0 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+  }
+  .form-fields div {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.35rem 0;
+    border-bottom: 1px dotted var(--border);
+  }
+  .form-fields div:last-child { border-bottom: none; }
+  .form-fields div span:last-child {
+    color: var(--ink-muted);
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+  }
+  .form-preview.verify .form-preview-body { direction: ltr; text-align: left; }
+
+  @media (max-width: 800px) {
+    .forms-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ─── EMAIL TEMPLATE ──────────────────────────────── */
+  .email-showcase {
+    background: var(--cream-cool);
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+    margin-top: 2rem;
+    position: relative;
+  }
+  .email-showcase::before {
+    content: 'EMAIL';
+    position: absolute;
+    top: -0.6rem;
+    right: 2rem;
+    background: var(--paper);
+    padding: 0 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--burnt);
+  }
+  .email-header {
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.88rem;
+    color: var(--ink-muted);
+    display: grid;
+    gap: 0.4rem;
+  }
+  .email-header strong {
+    color: var(--forest);
+    font-weight: 500;
+    display: inline-block;
+    min-width: 90px;
+  }
+  .email-header .subject {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--forest-dark);
+    font-weight: 600;
+    margin-top: 0.5rem;
+  }
+  .email-body {
+    direction: ltr;
+    text-align: left;
+    font-family: var(--font-body);
+    color: var(--ink);
+    font-size: 0.94rem;
+    line-height: 1.85;
+    white-space: pre-wrap;
+  }
+  .email-body em {
+    color: var(--burnt);
+    font-style: italic;
+    font-family: var(--font-display);
+  }
+  .email-body .highlight {
+    background: rgba(212, 169, 88, 0.15);
+    padding: 0.05em 0.25em;
+    border-radius: 2px;
+  }
+  .email-signature {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--border-strong);
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    direction: ltr;
+    text-align: left;
+  }
+  .email-signature strong { color: var(--forest); }
+
+  /* ─── SOP STEPS ───────────────────────────────────── */
+  .sop-list {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .sop-item {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 2rem;
+    padding: 1.75rem;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-right: 4px solid var(--burnt);
+    align-items: start;
+  }
+  .sop-item:nth-child(even) {
+    border-right-color: var(--gold);
+  }
+  .sop-marker {
+    font-family: var(--font-display);
+    font-weight: 500;
+  }
+  .sop-marker .num {
+    display: block;
+    font-size: 2.5rem;
+    color: var(--forest);
+    line-height: 1;
+    font-style: italic;
+  }
+  .sop-marker .lbl {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    margin-top: 0.4rem;
+  }
+  .sop-content h4 {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    color: var(--forest-dark);
+    margin: 0 0 0.5rem;
+    font-weight: 600;
+  }
+  .sop-content > p {
+    color: var(--ink-soft);
+    margin: 0 0 1rem;
+    line-height: 1.7;
+    font-size: 0.98rem;
+  }
+  .sop-checks {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem 1.5rem;
+  }
+  .sop-checks li {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    padding-right: 1.25rem;
+    position: relative;
+    line-height: 1.55;
+  }
+  .sop-checks li::before {
+    content: '✓';
+    position: absolute;
+    right: 0;
+    color: var(--burnt);
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 700px) {
+    .sop-item { grid-template-columns: 1fr; gap: 1rem; }
+    .sop-checks { grid-template-columns: 1fr; }
+  }
+
+  /* ─── TABLE COMPARE ───────────────────────────────── */
+  .compare-table-wrap {
+    margin-top: 2rem;
+    overflow-x: auto;
+  }
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    background: var(--paper);
+  }
+  .compare-table th, .compare-table td {
+    padding: 1rem 1.25rem;
+    text-align: right;
+    border-bottom: 1px solid var(--border);
+  }
+  .compare-table thead th {
+    background: var(--forest);
+    color: var(--cream);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: 0.01em;
+  }
+  .compare-table thead th:first-child {
+    background: var(--forest-dark);
+  }
+  .compare-table tbody th {
+    background: var(--cream-warm);
+    font-weight: 500;
+    color: var(--forest);
+    width: 20%;
+    font-family: var(--font-display);
+    font-size: 0.98rem;
+  }
+  .compare-table tbody td {
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .compare-table tbody tr:last-child th,
+  .compare-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* ─── TICKET SYSTEM ───────────────────────────────── */
+  .ticket-flow {
+    background: var(--paper);
+    padding: 2.5rem 2rem;
+    border: 1px solid var(--border);
+    margin-top: 2.5rem;
+  }
+  .ticket-states {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    position: relative;
+  }
+  .ticket-state {
+    text-align: center;
+    padding: 1rem 0.5rem;
+    position: relative;
+  }
+  .ticket-state::after {
+    content: '←';
+    position: absolute;
+    right: -0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: var(--gold);
+    font-family: var(--font-mono);
+  }
+  .ticket-state:last-child::after { display: none; }
+  .state-dot {
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 0.75rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--cream);
+    background: var(--forest);
+    font-size: 1.1rem;
+  }
+  .state-dot.warn { background: var(--gold); color: var(--forest-dark); }
+  .state-dot.active { background: var(--burnt); }
+  .state-dot.done { background: var(--forest-dark); }
+  .ticket-state h5 {
+    font-family: var(--font-display);
+    font-size: 1.02rem;
+    color: var(--forest);
+    margin: 0 0 0.25rem;
+    font-weight: 600;
+  }
+  .ticket-state p {
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 800px) {
+    .ticket-states { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .ticket-state::after { display: none; }
+  }
+
+  /* ─── TEAM ROLES ──────────────────────────────────── */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .team-card {
+    background: rgba(244, 237, 224, 0.06);
+    border: 1px solid rgba(244, 237, 224, 0.15);
+    padding: 2rem 1.75rem;
+  }
+  .team-card h4 {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    color: var(--gold);
+    margin: 0 0 0.5rem;
+    font-weight: 600;
+  }
+  .team-card .role-en {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--cream);
+    opacity: 0.75;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    direction: ltr;
+    text-align: right;
+  }
+  .team-card p {
+    font-size: 0.9rem;
+    color: var(--cream);
+    opacity: 0.85;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  @media (max-width: 800px) { .team-grid { grid-template-columns: 1fr; } }
+
+  /* ─── TIMELINE ────────────────────────────────────── */
+  .timeline {
+    margin-top: 2.5rem;
+    position: relative;
+    padding-right: 2rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 1px;
+    background: var(--border-strong);
+  }
+  .tl-item {
+    position: relative;
+    padding-bottom: 2rem;
+    padding-right: 1.5rem;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    right: -0.35rem;
+    top: 0.5rem;
+    width: 12px;
+    height: 12px;
+    background: var(--burnt);
+    border: 2px solid var(--paper);
+    border-radius: 50%;
+  }
+  .tl-item .phase {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--burnt);
+    text-transform: uppercase;
+    margin: 0 0 0.35rem;
+  }
+  .tl-item h4 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--forest);
+    margin: 0 0 0.5rem;
+    font-weight: 600;
+  }
+  .tl-item p {
+    color: var(--ink-soft);
+    margin: 0;
+    line-height: 1.7;
+    font-size: 0.95rem;
+  }
+
+  /* ─── FOOTER ─────────────────────────────────────── */
+  footer {
+    background: var(--forest-dark);
+    color: var(--cream);
+    padding: 4rem 0 2rem;
+    margin-top: 5rem;
+  }
+  .footer-inner {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(244,237,224,0.15);
+  }
+  .footer-brand h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin: 0 0 0.5rem;
+    font-weight: 600;
+  }
+  .footer-brand p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    opacity: 0.8;
+    margin: 0;
+  }
+  .footer-col h5 {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin: 0 0 1.25rem;
+  }
+  .footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .footer-col ul a {
+    color: var(--cream);
+    opacity: 0.8;
+    font-size: 0.9rem;
+    transition: opacity 0.2s;
+  }
+  .footer-col ul a:hover { opacity: 1; color: var(--gold); }
+  .footer-bottom {
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.82rem;
+    opacity: 0.65;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-bottom .version {
+    font-family: var(--font-mono);
+    letter-spacing: 0.1em;
+  }
+
+  @media (max-width: 800px) {
+    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  /* ─── UTILITY ────────────────────────────────────── */
+  .pill {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(200, 99, 42, 0.12);
+    color: var(--burnt);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    border-radius: 3px;
+    text-transform: uppercase;
+  }
+  .pill.gold { background: rgba(212, 169, 88, 0.18); color: #8A6B25; }
+  .pill.forest { background: rgba(26, 58, 46, 0.1); color: var(--forest); }
+
+  /* ─── EMAIL INFRASTRUCTURE ───────────────────────── */
+  .email-infra {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .email-showcase-card {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    padding: 2.25rem 2rem;
+    position: relative;
+  }
+  .email-showcase-card::before {
+    content: '@';
+    position: absolute;
+    top: 0.5rem;
+    left: 1rem;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 5rem;
+    color: var(--gold);
+    opacity: 0.15;
+    line-height: 1;
+    font-weight: 400;
+  }
+  .email-showcase-card .lbl {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    margin: 0 0 0.75rem;
+    position: relative;
+    z-index: 1;
+  }
+  .email-address {
+    font-family: var(--font-mono);
+    font-size: 1.3rem;
+    color: var(--forest-dark);
+    margin: 0 0 1rem;
+    font-weight: 500;
+    direction: ltr;
+    text-align: right;
+    padding: 1rem 1.25rem;
+    background: var(--cream-warm);
+    border-right: 3px solid var(--burnt);
+    position: relative;
+    z-index: 1;
+  }
+  .email-address .prefix { color: var(--burnt); }
+  .email-showcase-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    color: var(--forest);
+    margin: 0 0 0.75rem;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+  }
+  .email-showcase-card p {
+    color: var(--ink-soft);
+    line-height: 1.75;
+    margin: 0;
+    font-size: 0.95rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .email-benefits {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    padding: 2.25rem 2rem;
+  }
+  .email-benefits h3 {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    color: var(--forest);
+    margin: 0 0 1.5rem;
+    font-weight: 600;
+  }
+  .email-benefits ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .email-benefits li {
+    padding-right: 2rem;
+    position: relative;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+  .email-benefits li strong {
+    display: block;
+    font-family: var(--font-display);
+    color: var(--forest);
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  .email-benefits li::before {
+    content: '';
+    position: absolute;
+    top: 0.7rem;
+    right: 0;
+    width: 20px;
+    height: 1px;
+    background: var(--burnt);
+  }
+
+  @media (max-width: 800px) {
+    .email-infra { grid-template-columns: 1fr; }
+  }
+
+  .email-tech-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+  .email-tech-item {
+    background: var(--cream-warm);
+    padding: 1.5rem 1.5rem;
+    border-right: 3px solid var(--gold);
+  }
+  .email-tech-item h5 {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--burnt);
+    text-transform: uppercase;
+    margin: 0 0 0.5rem;
+  }
+  .email-tech-item h4 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--forest);
+    margin: 0 0 0.5rem;
+    font-weight: 600;
+  }
+  .email-tech-item p {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  @media (max-width: 800px) {
+    .email-tech-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Naming card */
+  .naming-showcase {
+    background: var(--forest);
+    color: var(--cream);
+    padding: 3.5rem 3rem;
+    margin-top: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .naming-showcase::before {
+    content: 'ARV';
+    position: absolute;
+    left: 2rem;
+    bottom: -3rem;
+    font-family: var(--font-display);
+    font-size: 12rem;
+    font-weight: 700;
+    color: rgba(212, 169, 88, 0.08);
+    line-height: 1;
+    letter-spacing: -0.05em;
+  }
+  .naming-showcase .lbl {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin: 0 0 1rem;
+  }
+  .naming-showcase h3 {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    color: var(--cream);
+    margin: 0 0 0.4rem;
+    font-weight: 600;
+    line-height: 1.15;
+  }
+  .naming-showcase .en {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--gold);
+    direction: ltr;
+    text-align: right;
+    margin: 0 0 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+  .naming-showcase p {
+    max-width: 42em;
+    color: var(--cream);
+    opacity: 0.88;
+    line-height: 1.8;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ NAV ═══════════ -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="brand">
+      <span class="brand-mark">ع.ق.ت</span>
+      <span>وحدة السجلات الأكاديمية والتحقق</span>
+    </div>
+    <div class="nav-links">
+      <a href="#problem">المشكلة</a>
+      <a href="#services">الخدمات</a>
+      <a href="#forms">النماذج</a>
+      <a href="#templates">القوالب</a>
+      <a href="#sop">دليل الإجراءات</a>
+      <a href="#email">البريد الرسمي</a>
+      <a href="#roadmap">خطة التنفيذ</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<header class="hero">
+  <div class="hero-main">
+    <p class="hero-eyebrow">مشروع تحول رقمي · عمادة القبول والتسجيل</p>
+    <h1 class="hero-title">
+      وحدة السجلات الأكاديمية <span class="accent">والتحقق</span>
+    </h1>
+    <p class="hero-sub-en">Academic Records &amp; Verification Unit</p>
+    <p class="hero-desc">
+      إعادة هندسة شاملة لمسار طلبات إرسال المستندات ومصادقة المؤهلات في جامعة أم القرى. من طلبات مبعثرة تصل عبر إيميلات متفرقة، إلى مركز خدمات موحّد ومنظّم يعمل عبر نظام التذاكر الإلكتروني، بلغة رسمية معتمدة وبمعايير الجامعات الدولية.
+    </p>
+    <div class="hero-meta">
+      <span><strong>الجهة</strong>عمادة القبول والتسجيل — جامعة أم القرى</span>
+      <span><strong>الخدمات</strong>خدمتان تحت مظلة واحدة</span>
+      <span><strong>الحالة</strong>مسودة للنقاش والاعتماد</span>
+    </div>
+  </div>
+
+  <aside class="hero-side">
+    <p class="hero-side-label">المشكلة باختصار</p>
+    <h3 class="hero-side-title">طلبات مبعثرة، لا معايير موحّدة، ولا مسار واضح.</h3>
+    <blockquote class="hero-quote">
+      طلبات تصل عبر بريد Gmail شخصي وHotmail وإيميلات متفرقة، بلغات مختلفة وبيانات ناقصة، دون مرجع رسمي ولا رقم تتبع.
+    </blockquote>
+    <div class="hero-side-meta">
+      تم تحليل 4 حالات فعلية + حالتان لمصادقة الوثائق كأساس لبناء الحل.
+    </div>
+  </aside>
+</header>
+
+<!-- ═══════════ THE PROBLEM ═══════════ -->
+<section id="problem" class="section-band cream">
+  <div class="container">
+    <p class="section-eyebrow">التشخيص</p>
+    <h2 class="section-title">أربع مشكلات تُعيق <span class="accent">تجربة الطالب والفريق</span></h2>
+    <p class="section-lead">
+      الوضع الحالي يُنتج طلبات صعبة المعالجة، بيانات ناقصة، وسيرورة غير قابلة للقياس أو التتبع. المستفيد يعاني والفريق يعاني، والنتيجة تأخير في إجراءات الطلاب والخريجين المصيرية.
+    </p>
+
+    <div class="problem-grid">
+      <div class="problem-item">
+        <span class="problem-num">01</span>
+        <h4>قنوات مبعثرة</h4>
+        <p>طلبات تصل عبر إيميلات شخصية (Gmail، Hotmail، Yahoo) بدون معايير موحّدة أو نموذج رسمي.</p>
+      </div>
+      <div class="problem-item">
+        <span class="problem-num">02</span>
+        <h4>بيانات ناقصة</h4>
+        <p>غياب حقول أساسية كالرقم المرجعي، لغة المستند، أو الغرض من الإرسال. مما يتطلب جولات مراسلات إضافية.</p>
+      </div>
+      <div class="problem-item">
+        <span class="problem-num">03</span>
+        <h4>لا مرجع رسمي</h4>
+        <p>لا يوجد رقم تتبع للطلب، ولا آلية توثيق واضحة، مما يجعل قياس الأداء والتدقيق مستحيلاً.</p>
+      </div>
+      <div class="problem-item">
+        <span class="problem-num">04</span>
+        <h4>رفض دولي</h4>
+        <p>بعض الجامعات (مثل Indiana University) رفضت إرسالنا لغياب بيانات الموظف المرسل — مما عطّل قبول الطلبة.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ THE NAME ═══════════ -->
+<section class="section-band">
+  <div class="container-narrow">
+    <p class="section-eyebrow">التسمية</p>
+    <h2 class="section-title">اسم يعكس <span class="accent">الهوية والمهمة</span></h2>
+    <p class="section-lead">
+      اسم مستوحى من المصطلحات المعتمدة في مكاتب Registrar الجامعات الدولية، يجمع بين الخدمتين في مسمى واحد يعكس طبيعة العمل بدقة.
+    </p>
+
+    <div class="naming-showcase">
+      <p class="lbl">وحدة العمل المقترحة</p>
+      <h3>وحدة السجلات الأكاديمية والتحقق</h3>
+      <p class="en">Academic Records &amp; Verification Unit</p>
+      <p>
+        اختيار كلمة "السجلات" بدلاً من "المستندات" مقصود، إذ تُستخدم عالمياً في مكاتب Registrar وتعطي وزناً رسمياً أعلى. أما "التحقق" (Verification) فهي الترجمة الأدق لعمل الفريق مع الجهات الخارجية — نحن لا نُقيّم مؤهلات (Evaluation) بل نُثبت صحتها.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SERVICES ═══════════ -->
+<section id="services" class="section-band cream">
+  <div class="container">
+    <p class="section-eyebrow">الخدمات</p>
+    <h2 class="section-title">خدمتان تحت <span class="accent">مظلة واحدة</span></h2>
+    <p class="section-lead">
+      كل خدمة تخدم شريحة مختلفة، بمسار مختلف، ونموذج إلكتروني مستقل، لكنها تشترك في المعايير الرسمية والقوالب المعتمدة وآلية التذاكر.
+    </p>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-num">الخدمة الأولى</span>
+        <h3 class="service-title">إرسال المستندات الأكاديمية</h3>
+        <p class="service-title-en">Document Forwarding Service</p>
+        <p class="service-desc">
+          يستخدمها الطلاب والخريجون لطلب إرسال وثائقهم الرسمية إلى جامعات دولية، مؤسسات تقييم، شركات، أو جهات حكومية.
+        </p>
+        <ul class="service-features">
+          <li>الطالب هو من يبدأ الطلب عبر النموذج الإلكتروني</li>
+          <li>إرسال الوثائق (شهادة، ترانسكريبت، شهادة امتياز)</li>
+          <li>دعم إرفاق نماذج الجهات (WES وأمثالها) لتعبئتها وختمها</li>
+          <li>يُرسل من البريد الرسمي للعمادة لضمان الاعتماد</li>
+          <li>مقدم الطلب يستلم نسخة (CC) تلقائياً</li>
+        </ul>
+      </div>
+
+      <div class="service-card verify">
+        <span class="service-num">الخدمة الثانية</span>
+        <h3 class="service-title">مصادقة المؤهلات</h3>
+        <p class="service-title-en">Credential Verification Service</p>
+        <p class="service-desc">
+          تستخدمها الجهات الخارجية (وزارات، مؤسسات تقييم، جامعات) للتحقق من صحة وثيقة أكاديمية موجودة لديها بالفعل.
+        </p>
+        <ul class="service-features">
+          <li>الجهة الخارجية هي من تبدأ الطلب</li>
+          <li>تُرفق الوثيقة المُراد التحقق من صحتها</li>
+          <li>يشترط تقديم موافقة موقّعة من صاحب الوثيقة</li>
+          <li>يُصدر خطاب تحقق رسمي بالإثبات أو النفي</li>
+          <li>يُخطر الطالب علماً بأنه تم التحقق لصالحه</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>وجه المقارنة</th>
+            <th>إرسال المستندات</th>
+            <th>مصادقة المؤهلات</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th>من يبدأ الطلب؟</th><td>الطالب / الخريج</td><td>جهة خارجية</td></tr>
+          <tr><th>ماذا يُرسل؟</th><td>وثائق الطالب (PDF)</td><td>خطاب تحقق رسمي</td></tr>
+          <tr><th>لغة النموذج</th><td>عربي</td><td>إنجليزي</td></tr>
+          <tr><th>المتطلبات</th><td>هوية الطالب + بيانات الجهة المستهدفة</td><td>موافقة الطالب المُوقّعة + الوثيقة المُراد التحقق منها</td></tr>
+          <tr><th>أمثلة واقعية</th><td>WES، Indiana University، KAUST</td><td>GTEC غانا، وزارات، جهات تحقق</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ LIFECYCLE ═══════════ -->
+<section id="lifecycle" class="section-band">
+  <div class="container">
+    <p class="section-eyebrow">دورة الحياة</p>
+    <h2 class="section-title">من رابط الخدمة إلى <span class="accent">إغلاق التذكرة</span></h2>
+    <p class="section-lead">
+      كل طلب يمر بأربع مراحل رئيسية داخل نظام التذاكر الإلكتروني. لا مزيد من الإيميلات المباشرة، ولا طلبات ضائعة، ولا مسارات غامضة.
+    </p>
+
+    <div class="lifecycle">
+      <div class="life-step">
+        <div class="life-step-num">i</div>
+        <h4>التقديم</h4>
+        <p>المقدّم يزور رابط الخدمة على موقع الجامعة ويملأ النموذج الإلكتروني المناسب.</p>
+      </div>
+      <div class="life-step">
+        <div class="life-step-num">ii</div>
+        <h4>إنشاء التذكرة</h4>
+        <p>يُنشأ ملف تذكرة تلقائياً برقم مرجعي، ويُوجّه للفريق المختص حسب نوع الخدمة.</p>
+      </div>
+      <div class="life-step">
+        <div class="life-step-num">iii</div>
+        <h4>التنفيذ</h4>
+        <p>الفريق يراجع البيانات، يجهّز الوثائق، ويُرسل البريد الرسمي وفق القالب المعتمد.</p>
+      </div>
+      <div class="life-step">
+        <div class="life-step-num">iv</div>
+        <h4>الإغلاق</h4>
+        <p>توثيق الإرسال في التذكرة، وإشعار المقدّم بالإنجاز مع نسخة CC من البريد الرسمي.</p>
+      </div>
+    </div>
+
+    <div class="ticket-flow">
+      <p style="font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.15em; color: var(--ink-muted); text-transform: uppercase; margin: 0 0 2rem;">حالات التذكرة</p>
+      <div class="ticket-states">
+        <div class="ticket-state">
+          <div class="state-dot">جديد</div>
+          <h5>مفتوحة</h5>
+          <p>وصلت للفريق</p>
+        </div>
+        <div class="ticket-state">
+          <div class="state-dot warn">م</div>
+          <h5>قيد المراجعة</h5>
+          <p>التحقق من البيانات</p>
+        </div>
+        <div class="ticket-state">
+          <div class="state-dot active">ت</div>
+          <h5>قيد التنفيذ</h5>
+          <p>تجهيز الوثائق</p>
+        </div>
+        <div class="ticket-state">
+          <div class="state-dot active">إ</div>
+          <h5>تم الإرسال</h5>
+          <p>البريد أُرسل رسمياً</p>
+        </div>
+        <div class="ticket-state">
+          <div class="state-dot done">✓</div>
+          <h5>مُغلقة</h5>
+          <p>موثّقة ومحفوظة</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FORMS ═══════════ -->
+<section id="forms" class="section-band cream">
+  <div class="container">
+    <p class="section-eyebrow">النماذج الإلكترونية</p>
+    <h2 class="section-title">نموذجان مصمّمان لـ <span class="accent">جمهورين مختلفين</span></h2>
+    <p class="section-lead">
+      كل نموذج يجمع البيانات اللازمة لتنفيذ الطلب من أول مرة دون الحاجة لمراسلات إضافية. النموذج الأول بالعربي، والثاني بالإنجليزي.
+    </p>
+
+    <div class="forms-grid">
+      <div class="form-preview">
+        <div class="form-preview-head">
+          <h4>نموذج إرسال المستندات</h4>
+          <span class="form-preview-tag">FORWARDING</span>
+        </div>
+        <div class="form-preview-body">
+          <div class="form-section-block">
+            <p class="form-section-label">بيانات مقدم الطلب</p>
+            <div class="form-fields">
+              <div><span>الاسم بالعربي</span><span>required</span></div>
+              <div><span>الاسم بالإنجليزي</span><span>required</span></div>
+              <div><span>الرقم الجامعي</span><span>required</span></div>
+              <div><span>رقم الهوية / الإقامة</span><span>required</span></div>
+              <div><span>الكلية والتخصص</span><span>required</span></div>
+              <div><span>سنة التخرج</span><span>optional</span></div>
+              <div><span>البريد الإلكتروني والجوال</span><span>required</span></div>
+            </div>
+          </div>
+
+          <div class="form-section-block">
+            <p class="form-section-label">المستندات المطلوبة</p>
+            <div class="form-fields">
+              <div><span>نوع الوثائق (شهادة / ترانسكريبت / امتياز)</span><span>checkbox</span></div>
+              <div><span>لغة المستند (عربي / إنجليزي / مزدوج)</span><span>select</span></div>
+            </div>
+          </div>
+
+          <div class="form-section-block">
+            <p class="form-section-label">بيانات الجهة المستهدفة</p>
+            <div class="form-fields">
+              <div><span>اسم الجهة ونوعها</span><span>required</span></div>
+              <div><span>البريد الرسمي للجهة</span><span>required</span></div>
+              <div><span>الدولة والرقم المرجعي</span><span>optional</span></div>
+            </div>
+          </div>
+
+          <div class="form-section-block">
+            <p class="form-section-label">نموذج الجهة (WES وأمثاله)</p>
+            <div class="form-fields">
+              <div><span>هل يوجد نموذج مرفق؟</span><span>yes/no</span></div>
+              <div><span>رفع النموذج للتوقيع والختم</span><span>file upload</span></div>
+              <div><span>الرقم المرجعي لدى الجهة</span><span>optional</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-preview verify">
+        <div class="form-preview-head">
+          <h4>Credential Verification Form</h4>
+          <span class="form-preview-tag">VERIFICATION</span>
+        </div>
+        <div class="form-preview-body">
+          <div class="form-section-block">
+            <p class="form-section-label">Requesting Institution</p>
+            <div class="form-fields">
+              <div><span>Institution name &amp; country</span><span>required</span></div>
+              <div><span>Institution type</span><span>required</span></div>
+              <div><span>Internal reference</span><span>optional</span></div>
+            </div>
+          </div>
+
+          <div class="form-section-block">
+            <p class="form-section-label">Requester Contact</p>
+            <div class="form-fields">
+              <div><span>Full name &amp; job title</span><span>required</span></div>
+              <div><span>Official email</span><span>required</span></div>
+              <div><span>Phone with country code</span><span>optional</span></div>
+            </div>
+          </div>
+
+          <div class="form-section-block">
+            <p class="form-section-label">Credential Holder</p>
+            <div class="form-fields">
+              <div><span>Full name as on certificate</span><span>required</span></div>
+              <div><span>University ID (if known)</span><span>optional</span></div>
+              <div><span>Degree, college, graduation year</span><span>required</span></div>
+            </div>
+          </div>
+
+          <div class="form-section-block">
+            <p class="form-section-label">Supporting Documents</p>
+            <div class="form-fields">
+              <div><span>Document to verify (PDF)</span><span>required</span></div>
+              <div><span>Signed consent from holder</span><span>required</span></div>
+              <div><span>Consent confirmation checkbox</span><span>required</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ EMAIL TEMPLATES ═══════════ -->
+<section id="templates" class="section-band">
+  <div class="container-narrow">
+    <p class="section-eyebrow">قوالب البريد الرسمي</p>
+    <h2 class="section-title">صياغة معتمدة بمستوى <span class="accent">Registrar الدولي</span></h2>
+    <p class="section-lead">
+      القوالب مبنية بلغة قانونية دقيقة تُثبت رسمية الوثيقة وتحفظ حقوق الجامعة. صيغ الرسمية مطابقة لممارسات مكاتب Registrar في الجامعات الأمريكية والبريطانية.
+    </p>
+
+    <div class="email-showcase">
+      <div class="email-header">
+        <div><strong>From:</strong> <span dir="ltr">Deanship of Admissions and Registration &lt;deanship@uqu.edu.sa&gt;</span></div>
+        <div><strong>To:</strong> <span dir="ltr">admissions@target-institution.edu</span></div>
+        <div><strong>CC:</strong> <span dir="ltr">applicant@email.com</span></div>
+        <div class="subject" dir="ltr" style="text-align: left;">Official Academic Records — [Student Full Name]</div>
+      </div>
+      <div class="email-body">Dear [Admissions / Evaluation / Human Resources] Team,
+
+The Deanship of Admissions and Registration at Umm Al-Qura University <em>certifies</em> that the attached documents are official academic records issued by the University. They are transmitted directly from the University's official email account at the request of the student or graduate for official use by your institution.
+
+<span class="highlight">Student Information</span>
+• Full Name (Arabic): [الاسم بالعربي]
+• Full Name (English): [Full Name in English]
+• University ID: [University ID]
+• National ID / Passport No.: [Number]
+• College &amp; Major: [College — Major]
+• Graduation Year: [Year]
+• Reference Number (if applicable): [Reference Number]
+
+<span class="highlight">Documents Attached</span>
+☐ Degree / Graduation Certificate
+☐ Official Academic Transcript
+☐ Internship Completion Certificate
+
+<span class="highlight">Purpose of Submission</span>
+☐ Graduate Admission     ☐ Credential Evaluation
+☐ Employment Verification  ☐ Other
+
+A copy (CC) of this email has been provided to the applicant for their reference. Should you require any additional information or further verification, please do not hesitate to contact us using the details below.
+
+This email and its attachments constitute an official transmission from Umm Al-Qura University and have been sent directly from the official email account of the Deanship of Admissions and Registration. The attached documents are official University records and are valid when received directly from this official email account.</div>
+
+      <div class="email-signature">
+        <strong>Kind regards,</strong><br>
+        [Officer Full Name]<br>
+        [Job Title]<br>
+        Deanship of Admissions and Registration<br>
+        Umm Al-Qura University<br><br>
+        Direct Email: [officer@uqu.edu.sa]<br>
+        Direct Phone: +966-X-XXX-XXXX
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SOP ═══════════ -->
+<section id="sop" class="section-band cream">
+  <div class="container">
+    <p class="section-eyebrow">دليل الإجراءات</p>
+    <h2 class="section-title">خمس خطوات <span class="accent">من الطلب إلى الإغلاق</span></h2>
+    <p class="section-lead">
+      دليل تشغيلي (SOP) موحّد للفريق. كل خطوة لها قائمة فحص واضحة تضمن جودة التنفيذ وتُقلّل من الأخطاء.
+    </p>
+
+    <div class="sop-list">
+      <div class="sop-item">
+        <div class="sop-marker">
+          <span class="num">i</span>
+          <span class="lbl">Intake</span>
+        </div>
+        <div class="sop-content">
+          <h4>استلام الطلب ومراجعة اكتماله</h4>
+          <p>عند وصول التذكرة الجديدة، يتأكد الموظف من اكتمال جميع البيانات المطلوبة قبل البدء في التنفيذ.</p>
+          <ul class="sop-checks">
+            <li>الاسم والرقم الجامعي مكتوبان بدقة</li>
+            <li>نوع المستند محدد (شهادة / ترانسكريبت)</li>
+            <li>بريد الجهة المستهدفة صحيح</li>
+            <li>لغة المستند محددة</li>
+            <li>بريد المقدم متاح للـ CC</li>
+            <li>الرقم المرجعي (إن وجد) مكتوب</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sop-item">
+        <div class="sop-marker">
+          <span class="num">ii</span>
+          <span class="lbl">Verify</span>
+        </div>
+        <div class="sop-content">
+          <h4>التحقق من هوية الطالب في النظام</h4>
+          <p>البحث في نظام الجامعة بالرقم الجامعي أو السجل المدني للتأكد من صحة البيانات وأهلية الإصدار.</p>
+          <ul class="sop-checks">
+            <li>تطابق الاسم مع السجل الأكاديمي</li>
+            <li>التأكد من حالة التخرج أو القيد</li>
+            <li>عدم وجود مستحقات مالية</li>
+            <li>عدم وجود موانع إدارية</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sop-item">
+        <div class="sop-marker">
+          <span class="num">iii</span>
+          <span class="lbl">Prepare</span>
+        </div>
+        <div class="sop-content">
+          <h4>استخراج المستندات وتجهيزها</h4>
+          <p>إخراج النسخة الرسمية من النظام حسب نوع ولغة المستند المطلوب، والتحقق من جودة الملف قبل الإرفاق.</p>
+          <ul class="sop-checks">
+            <li>النسخة الرسمية بصيغة PDF</li>
+            <li>اللغة المطلوبة مطابقة للطلب</li>
+            <li>الختم الرسمي مرئي</li>
+            <li>التوقيع المعتمد ظاهر</li>
+            <li>تعبئة نموذج الجهة (إن وجد)</li>
+            <li>ختم وتوقيع النموذج المرفق</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sop-item">
+        <div class="sop-marker">
+          <span class="num">iv</span>
+          <span class="lbl">Send</span>
+        </div>
+        <div class="sop-content">
+          <h4>إعداد البريد الرسمي وإرساله</h4>
+          <p>استخدام القالب المعتمد وتعبئة البيانات من التذكرة، ثم الإرسال من البريد الرسمي للعمادة حصراً.</p>
+          <ul class="sop-checks">
+            <li>الإرسال من البريد الرسمي للعمادة</li>
+            <li>عنوان الرسالة يتضمن اسم الطالب</li>
+            <li>الوثائق مرفقة بصيغة PDF</li>
+            <li>بريد المقدم في حقل CC</li>
+            <li>التوقيع الوظيفي للموظف كامل</li>
+            <li>مراجعة نهائية قبل الإرسال</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sop-item">
+        <div class="sop-marker">
+          <span class="num">v</span>
+          <span class="lbl">Close</span>
+        </div>
+        <div class="sop-content">
+          <h4>توثيق الطلب وإغلاق التذكرة</h4>
+          <p>بعد الإرسال يتم تحديث حالة التذكرة، حفظ نسخة من البريد المُرسل، وإشعار مقدم الطلب بإتمام الإجراء.</p>
+          <ul class="sop-checks">
+            <li>تحديث حالة التذكرة إلى "مُنجزة"</li>
+            <li>حفظ نسخة البريد في ملف الطالب</li>
+            <li>تسجيل تاريخ الإرسال</li>
+            <li>تسجيل اسم الموظف المنفذ</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ EMAIL INFRASTRUCTURE ═══════════ -->
+<section id="email" class="section-band">
+  <div class="container">
+    <p class="section-eyebrow">البنية التحتية</p>
+    <h2 class="section-title">بريد رسمي موحّد <span class="accent">للوحدة</span></h2>
+    <p class="section-lead">
+      إنشاء بريد إلكتروني مؤسسي مخصص للوحدة تحت نطاق العمادة، يضمن العزل التشغيلي عن باقي إيميلات العمادة ويرفع مستوى الاعتماد الدولي عبر ظهور اسم الوحدة الرسمي في كل مراسلة صادرة.
+    </p>
+
+    <div class="email-infra">
+      <div class="email-showcase-card">
+        <p class="lbl">البريد المقترح</p>
+        <p class="email-address"><span class="prefix">records</span>.dar@uqu.edu.sa</p>
+        <h3>لماذا هذا الاسم تحديداً</h3>
+        <p>يعكس اسم الوحدة الرسمي (Academic Records)، مفهوم دولياً في مكاتب Registrar، قصير وسهل الحفظ، ويُغطي الخدمتين معاً — الإرسال والتحقق.</p>
+      </div>
+
+      <div class="email-benefits">
+        <h3>الأثر التشغيلي المتوقع</h3>
+        <ul>
+          <li>
+            <strong>عزل تشغيلي كامل</strong>
+            الفريق يعمل على صندوق مستقل، دون تداخل مع باقي إيميلات العمادة.
+          </li>
+          <li>
+            <strong>اعتماد دولي أعلى</strong>
+            الجامعات الأجنبية ترى مصدراً مؤسسياً واضحاً، لا حساباً فردياً.
+          </li>
+          <li>
+            <strong>استمرارية مؤسسية</strong>
+            تنقّل الموظفين لا يُفقد المراسلات، والبريد يبقى للوحدة.
+          </li>
+          <li>
+            <strong>أرشفة مركزية</strong>
+            جميع المراسلات في مكان واحد قابل للبحث والتدقيق.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="email-tech-grid">
+      <div class="email-tech-item">
+        <h5>Setup</h5>
+        <h4>Shared Mailbox</h4>
+        <p>صندوق مشترك يسمح لأعضاء الفريق بالعمل عليه معاً، مع ظهور اسم الوحدة كمُرسِل.</p>
+      </div>
+      <div class="email-tech-item">
+        <h5>Integration</h5>
+        <h4>ربط بنظام التذاكر</h4>
+        <p>كل رد يصل على البريد يُنشئ تحديثاً على التذكرة المرتبطة تلقائياً.</p>
+      </div>
+      <div class="email-tech-item">
+        <h5>Access</h5>
+        <h4>صلاحيات مُدارة</h4>
+        <p>أعضاء الفريق يملكون صلاحية القراءة والإرسال، مع سجل داخلي للتدقيق.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TEAM STRUCTURE ═══════════ -->
+<section id="team" class="section-band dark">
+  <div class="container">
+    <p class="section-eyebrow">هيكل الفريق</p>
+    <h2 class="section-title">أدوار واضحة، <span class="accent">مسؤوليات محدّدة</span></h2>
+    <p class="section-lead" style="color: rgba(244,237,224,0.85);">
+      الوحدة تعمل بثلاثة أدوار رئيسية تُغطي دورة حياة الطلب من الاستقبال حتى الإغلاق، مع إشراف مباشر من إدارة العمادة.
+    </p>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <h4>مسؤول الاستقبال والتوجيه</h4>
+        <p class="role-en">Intake &amp; Triage Officer</p>
+        <p>يستقبل التذاكر الجديدة، يراجع اكتمال البيانات، ويوجّهها إلى المسار الصحيح حسب نوع الخدمة. هو خط الدفاع الأول ضد الطلبات الناقصة.</p>
+      </div>
+      <div class="team-card">
+        <h4>مسؤول التنفيذ</h4>
+        <p class="role-en">Records Processing Officer</p>
+        <p>يقوم بالتحقق من هوية الطالب، تجهيز الوثائق، تعبئة القوالب، وإرسال البريد الرسمي. يتحمّل المسؤولية الفنية عن جودة كل إرسال.</p>
+      </div>
+      <div class="team-card">
+        <h4>مسؤول الجودة والتوثيق</h4>
+        <p class="role-en">Quality &amp; Documentation Officer</p>
+        <p>يراجع الإرساليات قبل إغلاق التذاكر، يحفظ النسخ في ملفات الطلاب، ويُصدر تقارير أسبوعية عن أداء الوحدة.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ROADMAP ═══════════ -->
+<section id="roadmap" class="section-band cream">
+  <div class="container-narrow">
+    <p class="section-eyebrow">خطة التنفيذ</p>
+    <h2 class="section-title">من التصميم إلى <span class="accent">الإطلاق التشغيلي</span></h2>
+    <p class="section-lead">
+      خطة تدريجية من أربع مراحل تضمن الانتقال السلس من الوضع الحالي إلى الوحدة الجديدة، مع اختبار كل مرحلة قبل الانتقال للتي تليها.
+    </p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <p class="phase">المرحلة الأولى · التصميم والاعتماد</p>
+        <h4>عرض الخطة على الإدارة العليا</h4>
+        <p>تقديم المشروع للاعتماد الرسمي، وإجراء التعديلات المطلوبة على النماذج والقوالب وفق ملاحظات الفريق والإدارة.</p>
+      </div>
+      <div class="tl-item">
+        <p class="phase">المرحلة الثانية · التطوير التقني</p>
+        <h4>بناء النماذج وإنشاء البريد الرسمي</h4>
+        <p>التنسيق مع فريق تقنية المعلومات لبناء النماذج الإلكترونية على موقع الجامعة، إنشاء البريد الموحّد للوحدة، وربط الكل بنظام التذاكر الحالي.</p>
+      </div>
+      <div class="tl-item">
+        <p class="phase">المرحلة الثالثة · التدريب والتشغيل التجريبي</p>
+        <h4>تدريب الفريق وتجربة الوحدة</h4>
+        <p>ورش تدريبية على SOP والقوالب، ثم تشغيل تجريبي لمدة أسبوعين مع مراقبة الأداء وجمع الملاحظات.</p>
+      </div>
+      <div class="tl-item">
+        <p class="phase">المرحلة الرابعة · الإطلاق الرسمي</p>
+        <h4>الإعلان والتوجيه العام</h4>
+        <p>إعلان رسمي عبر موقع الجامعة والقنوات الرسمية، مع إيقاف تدريجي لاستقبال الطلبات المباشرة عبر البريد.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3>وحدة السجلات الأكاديمية والتحقق</h3>
+        <p>مشروع رقمي تحت مظلة عمادة القبول والتسجيل بجامعة أم القرى. يهدف إلى إعادة هندسة خدمات الوثائق الأكاديمية بمعايير الجامعات الدولية.</p>
+      </div>
+      <div class="footer-col">
+        <h5>أقسام</h5>
+        <ul>
+          <li><a href="#problem">التشخيص</a></li>
+          <li><a href="#services">الخدمات</a></li>
+          <li><a href="#forms">النماذج</a></li>
+          <li><a href="#templates">قوالب البريد</a></li>
+          <li><a href="#sop">دليل الإجراءات</a></li>
+          <li><a href="#email">البريد الرسمي</a></li>
+          <li><a href="#roadmap">خطة التنفيذ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>الجهة</h5>
+        <ul>
+          <li>عمادة القبول والتسجيل</li>
+          <li>جامعة أم القرى</li>
+          <li>مكة المكرمة</li>
+          <li>المملكة العربية السعودية</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© جميع الحقوق محفوظة — عمادة القبول والتسجيل، جامعة أم القرى</span>
+      <span class="version">DRAFT v1.0 · للاعتماد الرسمي</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
