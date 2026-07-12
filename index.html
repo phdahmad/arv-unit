@@ -1055,6 +1055,205 @@
   .pill.gold { background: rgba(212, 169, 88, 0.18); color: #8A6B25; }
   .pill.forest { background: rgba(26, 58, 46, 0.1); color: var(--forest); }
 
+  /* ─── FLOW DIAGRAM ────────────────────────────────── */
+  .flow-diagram {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    padding: 3rem 2rem;
+    margin-top: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .flow-diagram-title {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    margin: 0 0 2.5rem;
+    text-align: center;
+  }
+  .flow-svg {
+    display: block;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    height: auto;
+  }
+
+  /* ─── PLAN SECTION ────────────────────────────────── */
+  .plan-hero {
+    background: var(--forest);
+    color: var(--cream);
+    padding: 2.5rem 2rem 2.75rem;
+    text-align: right;
+    position: relative;
+    overflow: hidden;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+  }
+  .plan-hero::before {
+    content: 'ARV';
+    position: absolute;
+    left: -1rem;
+    bottom: -3.5rem;
+    font-family: var(--font-display);
+    font-size: 11rem;
+    font-weight: 700;
+    color: rgba(212, 169, 88, 0.09);
+    line-height: 1;
+    letter-spacing: -0.05em;
+  }
+  .plan-hero-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin: 0 0 0.75rem;
+    position: relative;
+  }
+  .plan-hero-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--cream);
+    margin: 0 0 0.35rem;
+    font-weight: 600;
+    line-height: 1.15;
+    position: relative;
+  }
+  .plan-hero-en {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--gold);
+    direction: ltr;
+    text-align: right;
+    margin: 0 0 1rem;
+    position: relative;
+  }
+  .plan-hero-desc {
+    font-size: 0.95rem;
+    color: var(--cream);
+    opacity: 0.85;
+    max-width: 40em;
+    margin: 0;
+    line-height: 1.7;
+    position: relative;
+  }
+
+  .plan-services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .plan-service {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    padding: 1.75rem 1.75rem;
+    border-right: 3px solid var(--burnt);
+  }
+  .plan-service.two { border-right-color: var(--gold); }
+  .plan-service-badge {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    color: var(--burnt);
+    text-transform: uppercase;
+    margin: 0 0 0.6rem;
+    font-weight: 500;
+  }
+  .plan-service.two .plan-service-badge { color: #8A6B25; }
+  .plan-service h4 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--forest);
+    margin: 0 0 0.25rem;
+    font-weight: 600;
+  }
+  .plan-service .en {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--burnt);
+    margin: 0 0 1rem;
+    direction: ltr;
+    text-align: right;
+  }
+  .plan-service.two .en { color: #8A6B25; }
+  .plan-service ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .plan-service li {
+    padding-right: 1.1rem;
+    position: relative;
+  }
+  .plan-service li::before {
+    content: '';
+    position: absolute;
+    top: 0.6rem;
+    right: 0;
+    width: 5px;
+    height: 5px;
+    background: var(--burnt);
+    border-radius: 50%;
+  }
+  .plan-service.two li::before { background: var(--gold); }
+
+  .plan-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .plan-step-row {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 1rem;
+    padding: 1.15rem 1.4rem;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .plan-step-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--cream-warm);
+    color: var(--burnt);
+    display: grid;
+    place-items: center;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .plan-step-body h5 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--forest);
+    margin: 0 0 0.25rem;
+    font-weight: 600;
+  }
+  .plan-step-body p {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 720px) {
+    .plan-services-grid { grid-template-columns: 1fr; }
+  }
+
   /* ─── EMAIL INFRASTRUCTURE ───────────────────────── */
   .email-infra {
     display: grid;
@@ -1210,6 +1409,148 @@
     .email-tech-grid { grid-template-columns: 1fr; }
   }
 
+  /* ─── EMAIL SIGNATURE PREVIEW ─────────────────────── */
+  .signature-showcase {
+    margin-top: 3rem;
+  }
+  .signature-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: var(--burnt);
+    text-transform: uppercase;
+    margin: 0 0 1.25rem;
+    text-align: center;
+  }
+  .signature-preview {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.5rem 3rem;
+    direction: ltr;
+    text-align: left;
+    box-shadow: 0 4px 24px rgba(31, 26, 21, 0.04);
+    position: relative;
+  }
+  .sig-mail-headers {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1rem;
+    margin-bottom: 1.25rem;
+    font-size: 0.87rem;
+    color: var(--ink-soft);
+    line-height: 1.8;
+  }
+  .sig-mail-headers strong {
+    color: var(--forest-dark);
+    font-weight: 500;
+    display: inline-block;
+    min-width: 68px;
+  }
+  .sig-mail-headers .sig-from-highlight {
+    color: var(--burnt);
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+  }
+  .sig-body-preview {
+    font-family: var(--font-body);
+    color: var(--ink);
+    font-size: 0.94rem;
+    line-height: 1.85;
+    padding-bottom: 1.5rem;
+  }
+  .sig-block {
+    margin-top: 1.75rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--forest-dark);
+  }
+  .sig-officer-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--forest-dark);
+    margin: 0 0 0.15rem;
+  }
+  .sig-officer-title {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin: 0 0 1rem;
+  }
+  .sig-unit-row {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.85rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1rem;
+  }
+  .sig-unit-mark {
+    width: 40px;
+    height: 40px;
+    border: 1.5px solid var(--forest-dark);
+    display: grid;
+    place-items: center;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: -0.02em;
+    color: var(--forest-dark);
+    flex-shrink: 0;
+  }
+  .sig-unit-info {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  .sig-unit-info strong {
+    display: block;
+    color: var(--forest-dark);
+    font-weight: 600;
+    font-family: var(--font-display);
+    font-size: 0.98rem;
+  }
+  .sig-unit-info span {
+    color: var(--ink-muted);
+    font-size: 0.78rem;
+  }
+  .sig-contacts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.35rem 1.5rem;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+  }
+  .sig-contacts > div {
+    display: flex;
+    gap: 0.4rem;
+    align-items: baseline;
+  }
+  .sig-contacts strong {
+    color: var(--forest-dark);
+    font-weight: 500;
+    min-width: 46px;
+    font-family: var(--font-display);
+  }
+  .sig-contacts .sig-email-hi {
+    color: var(--burnt);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+  }
+  .sig-legal-note {
+    margin-top: 1.25rem;
+    padding-top: 0.85rem;
+    border-top: 1px dashed var(--border-strong);
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  @media (max-width: 640px) {
+    .signature-preview { padding: 1.75rem 1.5rem; }
+    .sig-contacts { grid-template-columns: 1fr; }
+  }
+
   /* Naming card */
   .naming-showcase {
     background: var(--forest);
@@ -1281,6 +1622,7 @@
     <div class="nav-links">
       <a href="#problem">المشكلة</a>
       <a href="#services">الخدمات</a>
+      <a href="#plan">مخطط الوحدة</a>
       <a href="#forms">النماذج</a>
       <a href="#templates">القوالب</a>
       <a href="#sop">دليل الإجراءات</a>
@@ -1438,8 +1780,85 @@
   </div>
 </section>
 
+<!-- ═══════════ ARV PLAN SUMMARY ═══════════ -->
+<section id="plan" class="section-band">
+  <div class="container">
+    <p class="section-eyebrow">مخطط الوحدة</p>
+    <h2 class="section-title">مركز موحّد <span class="accent">للخدمتين</span></h2>
+    <p class="section-lead">
+      نظرة سريعة على البنية الكاملة للوحدة: المظلة، الخدمتان تحتها، والخطوات الأربع الرئيسية لتحويل الوضع الحالي إلى مسار عمل منتظم.
+    </p>
+
+    <div class="plan-hero">
+      <p class="plan-hero-label">وحدة العمل المقترحة</p>
+      <h3 class="plan-hero-title">وحدة السجلات الأكاديمية والتحقق</h3>
+      <p class="plan-hero-en">Academic Records &amp; Verification Unit (ARV)</p>
+      <p class="plan-hero-desc">مركز موحّد لخدمتين رئيسيتين تحت مظلة واحدة تعمل عبر النماذج الإلكترونية ونظام التذاكر.</p>
+    </div>
+
+    <div class="plan-services-grid">
+      <div class="plan-service">
+        <p class="plan-service-badge">الخدمة الأولى</p>
+        <h4>إرسال المستندات الأكاديمية</h4>
+        <p class="en">Document Forwarding Service</p>
+        <ul>
+          <li>الطالب هو من يبدأ الطلب</li>
+          <li>إرسال شهادة أو ترانسكريبت</li>
+          <li>إمكانية إرفاق نموذج WES ونحوه</li>
+          <li>يُرسل من البريد الرسمي للعمادة</li>
+          <li>يستلم الطالب نسخة CC</li>
+        </ul>
+      </div>
+
+      <div class="plan-service two">
+        <p class="plan-service-badge">الخدمة الثانية</p>
+        <h4>مصادقة المؤهلات</h4>
+        <p class="en">Credential Verification Service</p>
+        <ul>
+          <li>الجهة الخارجية هي من تبدأ الطلب</li>
+          <li>تُرفق الوثيقة المُراد التحقق منها</li>
+          <li>يتطلب موافقة الطالب المُوقّعة</li>
+          <li>يُصدر خطاب تحقق رسمي</li>
+          <li>يُخطر الطالب علماً بالتحقق</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="plan-steps">
+      <div class="plan-step-row">
+        <div class="plan-step-num">1</div>
+        <div class="plan-step-body">
+          <h5>توجيه الجميع لرابط الخدمة</h5>
+          <p>إيقاف استقبال الطلبات عبر البريد المباشر، وتوجيه المتقدمين إلى صفحة الخدمة على موقع الجامعة أو نظام التذاكر.</p>
+        </div>
+      </div>
+      <div class="plan-step-row">
+        <div class="plan-step-num">2</div>
+        <div class="plan-step-body">
+          <h5>إنشاء تذكرة تلقائياً</h5>
+          <p>عند تعبئة النموذج، يُنشأ تذكرة في نظام التذاكر بنوع الخدمة (Forwarding أو Verification)، وتُوجّه للفريق المختص.</p>
+        </div>
+      </div>
+      <div class="plan-step-row">
+        <div class="plan-step-num">3</div>
+        <div class="plan-step-body">
+          <h5>تنفيذ الطلب من الفريق</h5>
+          <p>المراجعة، التحقق من هوية الطالب، تجهيز الوثائق، تعبئة القالب المعتمد، والإرسال من البريد الرسمي.</p>
+        </div>
+      </div>
+      <div class="plan-step-row">
+        <div class="plan-step-num">4</div>
+        <div class="plan-step-body">
+          <h5>التوثيق وإغلاق التذكرة</h5>
+          <p>تسجيل رقم الإرسال، حفظ نسخة من البريد، تحديث حالة التذكرة إلى "مُنجزة"، وإشعار المقدم بإغلاق الطلب.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════ LIFECYCLE ═══════════ -->
-<section id="lifecycle" class="section-band">
+<section id="lifecycle" class="section-band cream">
   <div class="container">
     <p class="section-eyebrow">دورة الحياة</p>
     <h2 class="section-title">من رابط الخدمة إلى <span class="accent">إغلاق التذكرة</span></h2>
@@ -1468,6 +1887,86 @@
         <h4>الإغلاق</h4>
         <p>توثيق الإرسال في التذكرة، وإشعار المقدّم بالإنجاز مع نسخة CC من البريد الرسمي.</p>
       </div>
+    </div>
+
+    <div class="flow-diagram">
+      <p class="flow-diagram-title">مسار الطلب داخل النظام</p>
+      <svg class="flow-svg" viewBox="0 0 860 380" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrowhead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="#C8632A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+
+        <!-- Row 1 -->
+        <g>
+          <rect x="20" y="30" width="180" height="70" rx="6" fill="#FAF6EC" stroke="#1A3A2E" stroke-width="1"/>
+          <text x="110" y="60" text-anchor="middle" font-family="Tajawal, sans-serif" font-size="14" font-weight="600" fill="#1A3A2E">1. الموقع</text>
+          <text x="110" y="82" text-anchor="middle" font-family="Tajawal, sans-serif" font-size="11" fill="#4A4238">رابط الخدمة</text>
+        </g>
+
+        <line x1="200" y1="65" x2="235" y2="65" stroke="#C8632A" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+        <g>
+          <rect x="240" y="30" width="180" height="70" rx="6" fill="#F4EDE0" stroke="#1A3A2E" stroke-width="1"/>
+          <text x="330" y="60" text-anchor="middle" font-family="Tajawal, sans-serif" font-size="14" font-weight="600" fill="#1A3A2E">2. تعبئة النموذج</text>
+          <text x="330" y="82" text-anchor="middle" font-family="Tajawal, sans-serif" font-size="11" fill="#4A4238">من قِبل المقدم</text>
+        </g>
+
+        <line x1="420" y1="65" x2="455" y2="65" stroke="#C8632A" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+        <g>
+          <rect x="460" y="30" width="180" height="70" rx="6" fill="#F4EDE0" stroke="#1A3A2E" stroke-width="1"/>
+          <text x="550" y="60" text-anchor="middle" font-family="Tajawal, sans-serif" font-size="14" font-weight="600" fill="#1A3A2E">3. تذكرة جديدة</text>
+          <text x="550" y="82" text-anchor="middle" font-family="Tajawal, sans-serif" font-size="11" fill="#4A4238">تصل للفريق</text>
+        </g>
+
+        <line x1="640" y1="65" x2="675" y2="65" stroke="#C8632A" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+        <g>
+          <rect x="680" y="30" width="160" height="70" rx="6" fill="#EFE6D2" stroke="#1A3A2E" stroke-width="1"/>
+          <text x="760" y="60" text-anchor="middle" font-family="Tajawal, sans-serif" font-size="14" font-weight="600" fill="#1A3A2E">4. مراجعة</text>
+          <text x="760" y="82" text-anchor="middle" font-family="Tajawal, sans-serif" font-size="11" fill="#4A4238">من الفريق</text>
+        </g>
+
+        <!-- Bridge down -->
+        <path d="M 760 100 L 760 145 L 110 145 L 110 195" fill="none" stroke="#C8632A" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+        <!-- Row 2 -->
+        <g>
+          <rect x="20" y="200" width="180" height="70" rx="6" fill="#EFE6D2" stroke="#1A3A2E" stroke-width="1"/>
+          <text x="110" y="230" text-anchor="middle" font-family="Tajawal, sans-serif" font-size="14" font-weight="600" fill="#1A3A2E">5. تجهيز</text>
+          <text x="110" y="252" text-anchor="middle" font-family="Tajawal, sans-serif" font-size="11" fill="#4A4238">الوثائق + القالب</text>
+        </g>
+
+        <line x1="200" y1="235" x2="235" y2="235" stroke="#C8632A" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+        <g>
+          <rect x="240" y="200" width="180" height="70" rx="6" fill="#EFE6D2" stroke="#1A3A2E" stroke-width="1"/>
+          <text x="330" y="230" text-anchor="middle" font-family="Tajawal, sans-serif" font-size="14" font-weight="600" fill="#1A3A2E">6. إرسال</text>
+          <text x="330" y="252" text-anchor="middle" font-family="Tajawal, sans-serif" font-size="11" fill="#4A4238">من البريد الرسمي</text>
+        </g>
+
+        <line x1="420" y1="235" x2="455" y2="235" stroke="#C8632A" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+        <g>
+          <rect x="460" y="200" width="180" height="70" rx="6" fill="#FAF6EC" stroke="#1A3A2E" stroke-width="1"/>
+          <text x="550" y="230" text-anchor="middle" font-family="Tajawal, sans-serif" font-size="14" font-weight="600" fill="#1A3A2E">7. توثيق</text>
+          <text x="550" y="252" text-anchor="middle" font-family="Tajawal, sans-serif" font-size="11" fill="#4A4238">في التذكرة</text>
+        </g>
+
+        <line x1="640" y1="235" x2="675" y2="235" stroke="#C8632A" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+        <g>
+          <rect x="680" y="200" width="160" height="70" rx="6" fill="#FAF6EC" stroke="#1A3A2E" stroke-width="1"/>
+          <text x="760" y="230" text-anchor="middle" font-family="Tajawal, sans-serif" font-size="14" font-weight="600" fill="#1A3A2E">8. إغلاق</text>
+          <text x="760" y="252" text-anchor="middle" font-family="Tajawal, sans-serif" font-size="11" fill="#4A4238">التذكرة</text>
+        </g>
+
+        <!-- Bottom note -->
+        <line x1="60" y1="320" x2="800" y2="320" stroke="#D4A958" stroke-width="0.8" stroke-dasharray="4 4"/>
+        <text x="430" y="345" text-anchor="middle" font-family="Tajawal, sans-serif" font-size="13" fill="#4A4238">المقدم يستلم CC تلقائياً + إشعار بإغلاق التذكرة</text>
+      </svg>
     </div>
 
     <div class="ticket-flow">
@@ -1504,7 +2003,7 @@
 </section>
 
 <!-- ═══════════ FORMS ═══════════ -->
-<section id="forms" class="section-band cream">
+<section id="forms" class="section-band">
   <div class="container">
     <p class="section-eyebrow">النماذج الإلكترونية</p>
     <h2 class="section-title">نموذجان مصمّمان لـ <span class="accent">جمهورين مختلفين</span></h2>
@@ -1608,7 +2107,7 @@
 </section>
 
 <!-- ═══════════ EMAIL TEMPLATES ═══════════ -->
-<section id="templates" class="section-band">
+<section id="templates" class="section-band cream">
   <div class="container-narrow">
     <p class="section-eyebrow">قوالب البريد الرسمي</p>
     <h2 class="section-title">صياغة معتمدة بمستوى <span class="accent">Registrar الدولي</span></h2>
@@ -1663,7 +2162,7 @@ This email and its attachments constitute an official transmission from Umm Al-Q
 </section>
 
 <!-- ═══════════ SOP ═══════════ -->
-<section id="sop" class="section-band cream">
+<section id="sop" class="section-band">
   <div class="container">
     <p class="section-eyebrow">دليل الإجراءات</p>
     <h2 class="section-title">خمس خطوات <span class="accent">من الطلب إلى الإغلاق</span></h2>
@@ -1767,7 +2266,7 @@ This email and its attachments constitute an official transmission from Umm Al-Q
 </section>
 
 <!-- ═══════════ EMAIL INFRASTRUCTURE ═══════════ -->
-<section id="email" class="section-band">
+<section id="email" class="section-band cream">
   <div class="container">
     <p class="section-eyebrow">البنية التحتية</p>
     <h2 class="section-title">بريد رسمي موحّد <span class="accent">للوحدة</span></h2>
@@ -1823,6 +2322,46 @@ This email and its attachments constitute an official transmission from Umm Al-Q
         <p>أعضاء الفريق يملكون صلاحية القراءة والإرسال، مع سجل داخلي للتدقيق.</p>
       </div>
     </div>
+    <div class="signature-showcase">
+      <p class="signature-label">معاينة توقيع الموظف والبريد الرسمي</p>
+      <div class="signature-preview">
+        <div class="sig-mail-headers">
+          <div><strong>From:</strong> Academic Records &amp; Verification Unit <span class="sig-from-highlight">&lt;records.dar@uqu.edu.sa&gt;</span></div>
+          <div><strong>To:</strong> admissions@target-university.edu</div>
+          <div><strong>CC:</strong> applicant@email.com</div>
+          <div><strong>Subject:</strong> Official Academic Records — [Student Full Name]</div>
+        </div>
+
+        <div class="sig-body-preview">
+          Dear Admissions Team,<br>
+          The Deanship of Admissions and Registration at Umm Al-Qura University certifies that the attached documents are official academic records issued by the University…
+        </div>
+
+        <div class="sig-block">
+          <p class="sig-officer-name">Dr. Khalid Al-Thagafy</p>
+          <p class="sig-officer-title">Records Processing Officer</p>
+
+          <div class="sig-unit-row">
+            <div class="sig-unit-mark">DAR</div>
+            <div class="sig-unit-info">
+              <strong>Academic Records &amp; Verification Unit</strong>
+              <span>Deanship of Admissions and Registration · Umm Al-Qura University</span>
+            </div>
+          </div>
+
+          <div class="sig-contacts">
+            <div><strong>Unit:</strong> <span class="sig-email-hi">records.dar@uqu.edu.sa</span></div>
+            <div><strong>Direct:</strong> <span class="sig-email-hi">kthagafy@uqu.edu.sa</span></div>
+            <div><strong>Phone:</strong> +966-12-XXX-XXXX</div>
+            <div><strong>Web:</strong> uqu.edu.sa/dar/records</div>
+          </div>
+
+          <p class="sig-legal-note">
+            This email is issued from the official account of the Academic Records &amp; Verification Unit at Umm Al-Qura University. The attached documents are official University records.
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1856,7 +2395,7 @@ This email and its attachments constitute an official transmission from Umm Al-Q
 </section>
 
 <!-- ═══════════ ROADMAP ═══════════ -->
-<section id="roadmap" class="section-band cream">
+<section id="roadmap" class="section-band">
   <div class="container-narrow">
     <p class="section-eyebrow">خطة التنفيذ</p>
     <h2 class="section-title">من التصميم إلى <span class="accent">الإطلاق التشغيلي</span></h2>
@@ -1902,6 +2441,7 @@ This email and its attachments constitute an official transmission from Umm Al-Q
         <ul>
           <li><a href="#problem">التشخيص</a></li>
           <li><a href="#services">الخدمات</a></li>
+          <li><a href="#plan">مخطط الوحدة</a></li>
           <li><a href="#forms">النماذج</a></li>
           <li><a href="#templates">قوالب البريد</a></li>
           <li><a href="#sop">دليل الإجراءات</a></li>
