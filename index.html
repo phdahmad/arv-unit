@@ -112,10 +112,10 @@
     display: grid;
     place-items: center;
     font-family: var(--font-display);
-    font-weight: 600;
+    font-weight: 700;
     color: var(--forest);
-    font-size: 0.85rem;
-    letter-spacing: -0.05em;
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
   }
   .nav-links {
     display: flex;
@@ -1551,6 +1551,323 @@
     .sig-contacts { grid-template-columns: 1fr; }
   }
 
+  /* ─── FULL INTERACTIVE FORMS ──────────────────────── */
+  .full-form-wrap {
+    max-width: 780px;
+    margin: 3rem auto 0;
+  }
+  .form-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 0;
+  }
+  .form-tab {
+    background: transparent;
+    border: none;
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    color: var(--ink-muted);
+    padding: 0.9rem 1.75rem;
+    cursor: pointer;
+    position: relative;
+    font-weight: 500;
+    transition: color 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .form-tab:hover { color: var(--forest); }
+  .form-tab.active {
+    color: var(--burnt);
+  }
+  .form-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    right: 0;
+    left: 0;
+    height: 2px;
+    background: var(--burnt);
+  }
+  .form-tab-en {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.82rem;
+    color: var(--ink-muted);
+    margin-right: 0.5rem;
+    direction: ltr;
+    display: inline-block;
+  }
+  .form-tab.active .form-tab-en { color: var(--burnt); }
+
+  .full-form {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-top: none;
+    padding: 2.25rem;
+    display: none;
+  }
+  .full-form.active { display: block; }
+  .full-form.en { direction: ltr; text-align: left; }
+
+  .form-hero-band {
+    background: var(--forest);
+    color: var(--cream);
+    margin: -2.25rem -2.25rem 2rem;
+    padding: 1.25rem 2.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  .full-form.verify .form-hero-band { background: var(--burnt); }
+  .form-hero-band h3 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--cream);
+    margin: 0;
+    font-weight: 600;
+  }
+  .form-hero-tag {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    padding: 0.25rem 0.75rem;
+    background: rgba(255,255,255,0.15);
+    border-radius: 3px;
+    color: var(--cream);
+    text-transform: uppercase;
+  }
+
+  .form-notice {
+    background: var(--cream-warm);
+    border-right: 3px solid var(--gold);
+    padding: 0.85rem 1.15rem;
+    font-size: 0.87rem;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    margin-bottom: 1.75rem;
+    border-radius: 3px;
+  }
+  .full-form.en .form-notice {
+    border-right: none;
+    border-left: 3px solid var(--gold);
+  }
+
+  .form-fieldset {
+    background: var(--cream-cool);
+    border: 1px solid var(--border);
+    padding: 1.5rem 1.5rem 1.25rem;
+    margin-bottom: 1rem;
+    border-radius: 3px;
+  }
+  .form-fieldset-title {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    margin: 0 0 1rem;
+    padding-bottom: 0.65rem;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+    margin-bottom: 0.85rem;
+  }
+  .form-row.single { grid-template-columns: 1fr; }
+  .form-row:last-child { margin-bottom: 0; }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .form-field label {
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+  .form-field label .req {
+    color: var(--burnt);
+    margin-right: 0.15rem;
+  }
+  .full-form.en .form-field label .req {
+    margin-right: 0;
+    margin-left: 0.15rem;
+  }
+  .form-field input, .form-field select, .form-field textarea {
+    font-family: inherit;
+    font-size: 0.9rem;
+    padding: 0.55rem 0.75rem;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--ink);
+    transition: border-color 0.2s;
+  }
+  .full-form.en .form-field input,
+  .full-form.en .form-field select,
+  .full-form.en .form-field textarea {
+    direction: ltr;
+    text-align: left;
+  }
+  .form-field input:focus, .form-field select:focus, .form-field textarea:focus {
+    outline: none;
+    border-color: var(--burnt);
+  }
+  .form-field textarea {
+    resize: vertical;
+    min-height: 60px;
+    font-family: inherit;
+  }
+  .form-field input::placeholder,
+  .form-field textarea::placeholder {
+    color: var(--ink-muted);
+    opacity: 0.75;
+  }
+
+  .form-check-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .form-check {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.9rem;
+    color: var(--ink);
+    cursor: pointer;
+    padding: 0.35rem 0;
+  }
+  .form-check input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--burnt);
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .form-upload-zone {
+    border: 1.5px dashed var(--border-strong);
+    padding: 1.15rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    background: var(--paper);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .form-upload-zone:hover {
+    border-color: var(--burnt);
+    color: var(--burnt);
+    background: var(--cream-warm);
+  }
+  .form-upload-zone .icon {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin-bottom: 0.35rem;
+    line-height: 1;
+  }
+
+  .form-tip {
+    background: rgba(212, 169, 88, 0.13);
+    color: #6B5314;
+    font-size: 0.82rem;
+    padding: 0.65rem 0.9rem;
+    border-radius: 3px;
+    margin-top: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .form-conditional {
+    background: rgba(200, 99, 42, 0.06);
+    border: 1px solid rgba(200, 99, 42, 0.2);
+    padding: 1rem 1.25rem;
+    margin-top: 1rem;
+    border-radius: 3px;
+  }
+  .form-conditional-lead {
+    font-size: 0.8rem;
+    color: var(--burnt);
+    font-family: var(--font-mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 0.75rem;
+    font-weight: 500;
+  }
+
+  .form-consent-block {
+    background: var(--cream-warm);
+    padding: 1rem 1.15rem;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+  .form-consent-block label {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    cursor: pointer;
+  }
+  .form-consent-block input {
+    margin-top: 0.35rem;
+    accent-color: var(--burnt);
+    flex-shrink: 0;
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .btn-primary, .btn-secondary {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+    border: 1px solid;
+    letter-spacing: 0.01em;
+  }
+  .btn-primary {
+    background: var(--forest);
+    color: var(--cream);
+    border-color: var(--forest);
+  }
+  .btn-primary:hover {
+    background: var(--forest-dark);
+    border-color: var(--forest-dark);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink-soft);
+    border-color: var(--border-strong);
+  }
+  .btn-secondary:hover {
+    background: var(--cream-warm);
+    color: var(--forest);
+  }
+
+  @media (max-width: 640px) {
+    .form-row { grid-template-columns: 1fr; }
+    .form-hero-band { margin: -2.25rem -2.25rem 2rem; padding: 1rem 1.5rem; }
+    .full-form { padding: 1.75rem; }
+    .form-hero-band { margin: -1.75rem -1.75rem 1.75rem; }
+  }
+
   /* Naming card */
   .naming-showcase {
     background: var(--forest);
@@ -1616,7 +1933,7 @@
 <nav class="topnav">
   <div class="topnav-inner">
     <div class="brand">
-      <span class="brand-mark">ع.ق.ت</span>
+      <span class="brand-mark">DAR</span>
       <span>وحدة السجلات الأكاديمية والتحقق</span>
     </div>
     <div class="nav-links">
@@ -1624,6 +1941,7 @@
       <a href="#services">الخدمات</a>
       <a href="#plan">مخطط الوحدة</a>
       <a href="#forms">النماذج</a>
+      <a href="#live-forms">نماذج تفاعلية</a>
       <a href="#templates">القوالب</a>
       <a href="#sop">دليل الإجراءات</a>
       <a href="#email">البريد الرسمي</a>
@@ -2106,8 +2424,656 @@
   </div>
 </section>
 
+<!-- ═══════════ FULL INTERACTIVE FORMS ═══════════ -->
+<section id="live-forms" class="section-band cream">
+  <div class="container">
+    <p class="section-eyebrow">النماذج التفاعلية</p>
+    <h2 class="section-title">تجربة مباشرة <span class="accent">للنموذجين</span></h2>
+    <p class="section-lead">
+      معاينة كاملة للنماذج كما سيراها المستفيد على موقع الجامعة، بنسختين لكل خدمة — العربية للطلاب والخريجين، والإنجليزية للجهات الخارجية.
+    </p>
+
+    <!-- ─── Service 1: Document Forwarding ─── -->
+    <div style="margin-bottom: 4rem;">
+      <h3 style="font-family: var(--font-display); font-size: 1.5rem; color: var(--forest-dark); margin: 0 0 0.35rem; font-weight: 600;">
+        الخدمة الأولى — إرسال المستندات الأكاديمية
+      </h3>
+      <p style="font-family: var(--font-display); font-style: italic; font-size: 1rem; color: var(--burnt); margin: 0; direction: ltr; text-align: right;">
+        Document Forwarding Service
+      </p>
+
+      <div class="full-form-wrap">
+        <div class="form-tabs">
+          <button class="form-tab active" onclick="switchForm('f1', 'ar', this)">
+            النسخة العربية
+          </button>
+          <button class="form-tab" onclick="switchForm('f1', 'en', this)">
+            <span class="form-tab-en">English Version</span>
+          </button>
+        </div>
+
+        <!-- Arabic Form 1 -->
+        <div class="full-form active" id="f1-ar">
+          <div class="form-hero-band">
+            <h3>نموذج طلب إرسال مستندات أكاديمية</h3>
+            <span class="form-hero-tag">Forwarding</span>
+          </div>
+
+          <div class="form-notice">
+            يُرجى تعبئة جميع الحقول المطلوبة. سترسَل المستندات من البريد الرسمي لعمادة القبول والتسجيل، وستصلك نسخة CC على بريدك.
+          </div>
+
+          <div class="form-fieldset">
+            <p class="form-fieldset-title">بيانات مقدم الطلب</p>
+            <div class="form-row">
+              <div class="form-field">
+                <label>الاسم بالعربية <span class="req">*</span></label>
+                <input type="text" placeholder="محمد عبدالله الأحمدي">
+              </div>
+              <div class="form-field">
+                <label>الاسم بالإنجليزية <span class="req">*</span></label>
+                <input type="text" placeholder="Mohammed A. Alahmadi">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>الرقم الجامعي <span class="req">*</span></label>
+                <input type="text" placeholder="438xxxxxx">
+              </div>
+              <div class="form-field">
+                <label>رقم الهوية / الإقامة <span class="req">*</span></label>
+                <input type="text" placeholder="1098xxxxxxx">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>الحالة <span class="req">*</span></label>
+                <select>
+                  <option>اختر...</option>
+                  <option>طالب حالي</option>
+                  <option>خريج</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label>سنة التخرج</label>
+                <input type="text" placeholder="2022">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>الكلية <span class="req">*</span></label>
+                <input type="text" placeholder="الهندسة">
+              </div>
+              <div class="form-field">
+                <label>التخصص <span class="req">*</span></label>
+                <input type="text" placeholder="هندسة الحاسب">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>البريد الإلكتروني <span class="req">*</span></label>
+                <input type="email" placeholder="s@uqu.edu.sa">
+              </div>
+              <div class="form-field">
+                <label>رقم الجوال <span class="req">*</span></label>
+                <input type="tel" placeholder="05xxxxxxxx">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-fieldset">
+            <p class="form-fieldset-title">المستندات المطلوب إرسالها <span class="req" style="color: var(--burnt);">*</span></p>
+            <div class="form-check-group">
+              <label class="form-check"><input type="checkbox"> شهادة التخرج / وثيقة التخرج</label>
+              <label class="form-check"><input type="checkbox"> كشف الدرجات الأكاديمي (الترانسكريبت)</label>
+              <label class="form-check"><input type="checkbox"> شهادة إتمام التدريب الميداني / الامتياز</label>
+              <label class="form-check"><input type="checkbox"> أخرى (يُحدد في الملاحظات)</label>
+            </div>
+            <div class="form-row" style="margin-top: 1rem;">
+              <div class="form-field">
+                <label>لغة المستند <span class="req">*</span></label>
+                <select>
+                  <option>اختر...</option>
+                  <option>عربي</option>
+                  <option>إنجليزي</option>
+                  <option>عربي وإنجليزي</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-fieldset">
+            <p class="form-fieldset-title">بيانات الجهة المستهدفة</p>
+            <div class="form-row">
+              <div class="form-field">
+                <label>اسم الجهة <span class="req">*</span></label>
+                <input type="text" placeholder="Indiana University">
+              </div>
+              <div class="form-field">
+                <label>نوع الجهة <span class="req">*</span></label>
+                <select>
+                  <option>اختر...</option>
+                  <option>جامعة</option>
+                  <option>مؤسسة تقييم مؤهلات</option>
+                  <option>شركة / جهة توظيف</option>
+                  <option>جهة حكومية</option>
+                  <option>أخرى</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>البريد الرسمي للجهة <span class="req">*</span></label>
+                <input type="email" placeholder="admissions@uni.edu">
+              </div>
+              <div class="form-field">
+                <label>الدولة</label>
+                <input type="text" placeholder="الولايات المتحدة">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-fieldset">
+            <p class="form-fieldset-title">نموذج الجهة (WES وأمثاله)</p>
+            <div class="form-check-group">
+              <label class="form-check"><input type="radio" name="wesform1"> لا، فقط إرسال الوثائق</label>
+              <label class="form-check"><input type="radio" name="wesform1"> نعم، هناك نموذج مرفق يحتاج توقيع وختم</label>
+            </div>
+            <div class="form-conditional">
+              <p class="form-conditional-lead">في حال وجود نموذج مرفق</p>
+              <div class="form-row single">
+                <div class="form-field">
+                  <label>رفع النموذج (PDF)</label>
+                  <div class="form-upload-zone">
+                    <span class="icon">↑</span>
+                    اسحب الملف هنا أو انقر للرفع
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-field">
+                  <label>الرقم المرجعي لدى الجهة</label>
+                  <input type="text" placeholder="WES Ref: 7254439">
+                </div>
+              </div>
+            </div>
+            <div class="form-tip">
+              💡 مثال: نموذج WES Academic Records Request Form يتطلب توقيع وختم من قبل العمادة قبل الإرسال.
+            </div>
+          </div>
+
+          <div class="form-fieldset">
+            <p class="form-fieldset-title">ملاحظات إضافية</p>
+            <div class="form-field">
+              <textarea rows="3" placeholder="أي تعليمات خاصة (عناوين بريدية إضافية، مواعيد نهائية، تفاصيل أخرى)..."></textarea>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn-primary">تقديم الطلب ↗</button>
+            <button class="btn-secondary">حفظ مسودة</button>
+          </div>
+        </div>
+
+        <!-- English Form 1 -->
+        <div class="full-form en" id="f1-en">
+          <div class="form-hero-band">
+            <h3>Document Forwarding Request Form</h3>
+            <span class="form-hero-tag">Forwarding</span>
+          </div>
+
+          <div class="form-notice">
+            Please complete all required fields. Documents will be sent from the official Deanship email, and you will receive a CC copy at your email.
+          </div>
+
+          <div class="form-fieldset">
+            <p class="form-fieldset-title">Applicant Information</p>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Full Name (Arabic) <span class="req">*</span></label>
+                <input type="text" placeholder="محمد عبدالله الأحمدي">
+              </div>
+              <div class="form-field">
+                <label>Full Name (English) <span class="req">*</span></label>
+                <input type="text" placeholder="Mohammed A. Alahmadi">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>University ID <span class="req">*</span></label>
+                <input type="text" placeholder="438xxxxxx">
+              </div>
+              <div class="form-field">
+                <label>National ID / Iqama <span class="req">*</span></label>
+                <input type="text" placeholder="1098xxxxxxx">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Status <span class="req">*</span></label>
+                <select>
+                  <option>Select...</option>
+                  <option>Current Student</option>
+                  <option>Graduate</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label>Graduation Year</label>
+                <input type="text" placeholder="2022">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>College <span class="req">*</span></label>
+                <input type="text" placeholder="Engineering">
+              </div>
+              <div class="form-field">
+                <label>Major <span class="req">*</span></label>
+                <input type="text" placeholder="Computer Engineering">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Email <span class="req">*</span></label>
+                <input type="email" placeholder="s@uqu.edu.sa">
+              </div>
+              <div class="form-field">
+                <label>Mobile Number <span class="req">*</span></label>
+                <input type="tel" placeholder="05xxxxxxxx">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-fieldset">
+            <p class="form-fieldset-title">Documents to be sent <span class="req" style="color: var(--burnt);">*</span></p>
+            <div class="form-check-group">
+              <label class="form-check"><input type="checkbox"> Graduation / Degree Certificate</label>
+              <label class="form-check"><input type="checkbox"> Official Academic Transcript</label>
+              <label class="form-check"><input type="checkbox"> Internship Completion Certificate</label>
+              <label class="form-check"><input type="checkbox"> Other (specify in notes)</label>
+            </div>
+            <div class="form-row" style="margin-top: 1rem;">
+              <div class="form-field">
+                <label>Document Language <span class="req">*</span></label>
+                <select>
+                  <option>Select...</option>
+                  <option>Arabic</option>
+                  <option>English</option>
+                  <option>Arabic and English</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-fieldset">
+            <p class="form-fieldset-title">Target Institution</p>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Institution Name <span class="req">*</span></label>
+                <input type="text" placeholder="Indiana University">
+              </div>
+              <div class="form-field">
+                <label>Institution Type <span class="req">*</span></label>
+                <select>
+                  <option>Select...</option>
+                  <option>University</option>
+                  <option>Credential Evaluation Body</option>
+                  <option>Employer / Company</option>
+                  <option>Government Entity</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Official Email <span class="req">*</span></label>
+                <input type="email" placeholder="admissions@uni.edu">
+              </div>
+              <div class="form-field">
+                <label>Country</label>
+                <input type="text" placeholder="United States">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-fieldset">
+            <p class="form-fieldset-title">Institution Form (WES and similar)</p>
+            <div class="form-check-group">
+              <label class="form-check"><input type="radio" name="wesform2"> No, just send the documents</label>
+              <label class="form-check"><input type="radio" name="wesform2"> Yes, a form is attached that needs signature and stamp</label>
+            </div>
+            <div class="form-conditional">
+              <p class="form-conditional-lead">If a form is attached</p>
+              <div class="form-row single">
+                <div class="form-field">
+                  <label>Upload Form (PDF)</label>
+                  <div class="form-upload-zone">
+                    <span class="icon">↑</span>
+                    Drag file here or click to upload
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-field">
+                  <label>Reference Number at Institution</label>
+                  <input type="text" placeholder="WES Ref: 7254439">
+                </div>
+              </div>
+            </div>
+            <div class="form-tip">
+              💡 Example: The WES Academic Records Request Form requires the Deanship's signature and stamp before sending.
+            </div>
+          </div>
+
+          <div class="form-fieldset">
+            <p class="form-fieldset-title">Additional Notes</p>
+            <div class="form-field">
+              <textarea rows="3" placeholder="Any special instructions (additional mailing addresses, deadlines, other details)..."></textarea>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn-primary">Submit Request ↗</button>
+            <button class="btn-secondary">Save Draft</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── Service 2: Credential Verification ─── -->
+    <div>
+      <h3 style="font-family: var(--font-display); font-size: 1.5rem; color: var(--forest-dark); margin: 0 0 0.35rem; font-weight: 600;">
+        الخدمة الثانية — مصادقة المؤهلات
+      </h3>
+      <p style="font-family: var(--font-display); font-style: italic; font-size: 1rem; color: var(--burnt); margin: 0; direction: ltr; text-align: right;">
+        Credential Verification Service
+      </p>
+
+      <div class="full-form-wrap">
+        <div class="form-tabs">
+          <button class="form-tab active" onclick="switchForm('f2', 'en', this)">
+            <span class="form-tab-en">English Version</span>
+          </button>
+          <button class="form-tab" onclick="switchForm('f2', 'ar', this)">
+            النسخة العربية
+          </button>
+        </div>
+
+        <!-- English Form 2 (Primary) -->
+        <div class="full-form en verify active" id="f2-en">
+          <div class="form-hero-band">
+            <h3>Credential Verification Request Form</h3>
+            <span class="form-hero-tag">Verification</span>
+          </div>
+
+          <div class="form-notice">
+            This form is for external institutions requesting verification of academic credentials issued by Umm Al-Qura University. A signed consent form from the credential holder is required.
+          </div>
+
+          <div class="form-fieldset">
+            <p class="form-fieldset-title">Requesting Institution</p>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Institution Name <span class="req">*</span></label>
+                <input type="text" placeholder="Ghana Tertiary Education Commission (GTEC)">
+              </div>
+              <div class="form-field">
+                <label>Country <span class="req">*</span></label>
+                <input type="text" placeholder="Ghana">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Institution Type <span class="req">*</span></label>
+                <select>
+                  <option>Select...</option>
+                  <option>Credential Evaluation Body</option>
+                  <option>University</option>
+                  <option>Employer / Company</option>
+                  <option>Government / Ministry</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label>Internal Reference Number</label>
+                <input type="text" placeholder="Internal ref, if any">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-fieldset">
+            <p class="form-fieldset-title">Requester Contact Details</p>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Full Name <span class="req">*</span></label>
+                <input type="text" placeholder="Ms. Perfect Linda Worde">
+              </div>
+              <div class="form-field">
+                <label>Job Title <span class="req">*</span></label>
+                <input type="text" placeholder="Credential Evaluation Officer">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Official Email <span class="req">*</span></label>
+                <input type="email" placeholder="evaluation@gtec.edu.gh">
+              </div>
+              <div class="form-field">
+                <label>Phone (with country code)</label>
+                <input type="tel" placeholder="+233 269 749 976">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-fieldset">
+            <p class="form-fieldset-title">Credential Holder Information</p>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Full Name as on Certificate <span class="req">*</span></label>
+                <input type="text" placeholder="Saeed Ahmed">
+              </div>
+              <div class="form-field">
+                <label>University ID (if known)</label>
+                <input type="text" placeholder="42430077">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>National ID / Passport</label>
+                <input type="text" placeholder="2199774130">
+              </div>
+              <div class="form-field">
+                <label>Graduation Year <span class="req">*</span></label>
+                <input type="text" placeholder="2010">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Degree / Program <span class="req">*</span></label>
+                <input type="text" placeholder="BA in Arabic Language & Education">
+              </div>
+              <div class="form-field">
+                <label>College</label>
+                <input type="text" placeholder="College of Arabic Language">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-fieldset">
+            <p class="form-fieldset-title">Supporting Documents <span class="req" style="color: var(--burnt);">*</span></p>
+            <div class="form-field">
+              <label>Upload document(s) to be verified (PDF)</label>
+              <div class="form-upload-zone">
+                <span class="icon">↑</span>
+                Drag file here or click to upload
+              </div>
+            </div>
+            <div class="form-field" style="margin-top: 1rem;">
+              <label>Upload signed consent form from credential holder <span class="req">*</span></label>
+              <div class="form-upload-zone">
+                <span class="icon">↑</span>
+                Drag file here or click to upload
+              </div>
+            </div>
+          </div>
+
+          <div class="form-fieldset">
+            <p class="form-fieldset-title">Consent Confirmation</p>
+            <div class="form-consent-block">
+              <label>
+                <input type="checkbox">
+                <span>I confirm that a written consent has been obtained from the credential holder, authorizing Umm Al-Qura University to release verification information to our institution.</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn-primary">Submit Verification Request ↗</button>
+            <button class="btn-secondary">Save Draft</button>
+          </div>
+        </div>
+
+        <!-- Arabic Form 2 -->
+        <div class="full-form verify" id="f2-ar">
+          <div class="form-hero-band">
+            <h3>نموذج طلب مصادقة المؤهلات</h3>
+            <span class="form-hero-tag">Verification</span>
+          </div>
+
+          <div class="form-notice">
+            هذا النموذج مخصص للجهات الخارجية الراغبة في التحقق من صحة المؤهلات الأكاديمية الصادرة عن جامعة أم القرى. يُشترط إرفاق موافقة موقّعة من صاحب الوثيقة.
+          </div>
+
+          <div class="form-fieldset">
+            <p class="form-fieldset-title">الجهة الطالبة</p>
+            <div class="form-row">
+              <div class="form-field">
+                <label>اسم الجهة <span class="req">*</span></label>
+                <input type="text" placeholder="هيئة التعليم العالي في غانا">
+              </div>
+              <div class="form-field">
+                <label>الدولة <span class="req">*</span></label>
+                <input type="text" placeholder="غانا">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>نوع الجهة <span class="req">*</span></label>
+                <select>
+                  <option>اختر...</option>
+                  <option>مؤسسة تقييم مؤهلات</option>
+                  <option>جامعة</option>
+                  <option>شركة / جهة توظيف</option>
+                  <option>حكومية / وزارة</option>
+                  <option>أخرى</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label>الرقم المرجعي الداخلي</label>
+                <input type="text" placeholder="إن وجد">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-fieldset">
+            <p class="form-fieldset-title">بيانات التواصل مع مقدم الطلب</p>
+            <div class="form-row">
+              <div class="form-field">
+                <label>الاسم الكامل <span class="req">*</span></label>
+                <input type="text" placeholder="السيدة ليندا وورد">
+              </div>
+              <div class="form-field">
+                <label>المسمى الوظيفي <span class="req">*</span></label>
+                <input type="text" placeholder="موظف تقييم المؤهلات">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>البريد الرسمي <span class="req">*</span></label>
+                <input type="email" placeholder="evaluation@gtec.edu.gh">
+              </div>
+              <div class="form-field">
+                <label>رقم الهاتف (مع رمز الدولة)</label>
+                <input type="tel" placeholder="+233 269 749 976">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-fieldset">
+            <p class="form-fieldset-title">بيانات صاحب الوثيقة</p>
+            <div class="form-row">
+              <div class="form-field">
+                <label>الاسم كما هو مكتوب في الشهادة <span class="req">*</span></label>
+                <input type="text" placeholder="سعيد أحمد">
+              </div>
+              <div class="form-field">
+                <label>الرقم الجامعي (إن وُجد)</label>
+                <input type="text" placeholder="42430077">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>رقم الهوية / جواز السفر</label>
+                <input type="text" placeholder="2199774130">
+              </div>
+              <div class="form-field">
+                <label>سنة التخرج <span class="req">*</span></label>
+                <input type="text" placeholder="2010">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>الدرجة / البرنامج <span class="req">*</span></label>
+                <input type="text" placeholder="بكالوريوس اللغة العربية والتربية">
+              </div>
+              <div class="form-field">
+                <label>الكلية</label>
+                <input type="text" placeholder="كلية اللغة العربية">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-fieldset">
+            <p class="form-fieldset-title">المستندات المطلوب مراجعتها <span class="req" style="color: var(--burnt);">*</span></p>
+            <div class="form-field">
+              <label>ارفع الوثيقة المطلوب التحقق منها (PDF)</label>
+              <div class="form-upload-zone">
+                <span class="icon">↑</span>
+                اسحب الملف هنا أو انقر للرفع
+              </div>
+            </div>
+            <div class="form-field" style="margin-top: 1rem;">
+              <label>ارفع موافقة صاحب الوثيقة الموقّعة <span class="req">*</span></label>
+              <div class="form-upload-zone">
+                <span class="icon">↑</span>
+                اسحب الملف هنا أو انقر للرفع
+              </div>
+            </div>
+          </div>
+
+          <div class="form-fieldset">
+            <p class="form-fieldset-title">إقرار الموافقة</p>
+            <div class="form-consent-block">
+              <label>
+                <input type="checkbox">
+                <span>أُقر بأنه تم الحصول على موافقة كتابية من صاحب الوثيقة، تُخوّل جامعة أم القرى بإفصاح معلومات التحقق لجهتنا.</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn-primary">تقديم طلب التحقق ↗</button>
+            <button class="btn-secondary">حفظ مسودة</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- ═══════════ EMAIL TEMPLATES ═══════════ -->
-<section id="templates" class="section-band cream">
+<section id="templates" class="section-band">
   <div class="container-narrow">
     <p class="section-eyebrow">قوالب البريد الرسمي</p>
     <h2 class="section-title">صياغة معتمدة بمستوى <span class="accent">Registrar الدولي</span></h2>
@@ -2162,7 +3128,7 @@ This email and its attachments constitute an official transmission from Umm Al-Q
 </section>
 
 <!-- ═══════════ SOP ═══════════ -->
-<section id="sop" class="section-band">
+<section id="sop" class="section-band cream">
   <div class="container">
     <p class="section-eyebrow">دليل الإجراءات</p>
     <h2 class="section-title">خمس خطوات <span class="accent">من الطلب إلى الإغلاق</span></h2>
@@ -2266,7 +3232,7 @@ This email and its attachments constitute an official transmission from Umm Al-Q
 </section>
 
 <!-- ═══════════ EMAIL INFRASTRUCTURE ═══════════ -->
-<section id="email" class="section-band cream">
+<section id="email" class="section-band">
   <div class="container">
     <p class="section-eyebrow">البنية التحتية</p>
     <h2 class="section-title">بريد رسمي موحّد <span class="accent">للوحدة</span></h2>
@@ -2395,7 +3361,7 @@ This email and its attachments constitute an official transmission from Umm Al-Q
 </section>
 
 <!-- ═══════════ ROADMAP ═══════════ -->
-<section id="roadmap" class="section-band">
+<section id="roadmap" class="section-band cream">
   <div class="container-narrow">
     <p class="section-eyebrow">خطة التنفيذ</p>
     <h2 class="section-title">من التصميم إلى <span class="accent">الإطلاق التشغيلي</span></h2>
@@ -2465,6 +3431,22 @@ This email and its attachments constitute an official transmission from Umm Al-Q
     </div>
   </div>
 </footer>
+
+<script>
+  function switchForm(formId, lang, btn) {
+    // Find all tabs within same tab group
+    const tabGroup = btn.parentElement;
+    tabGroup.querySelectorAll('.form-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Hide all forms of this pair
+    document.getElementById(formId + '-ar').classList.remove('active');
+    document.getElementById(formId + '-en').classList.remove('active');
+
+    // Show selected
+    document.getElementById(formId + '-' + lang).classList.add('active');
+  }
+</script>
 
 </body>
 </html>
