@@ -640,6 +640,8 @@
     color: var(--ink-muted);
     display: grid;
     gap: 0.4rem;
+    direction: ltr;
+    text-align: left;
   }
   .email-header strong {
     color: var(--forest);
@@ -653,6 +655,7 @@
     color: var(--forest-dark);
     font-weight: 600;
     margin-top: 0.5rem;
+    text-align: left;
   }
   .email-body {
     direction: ltr;
@@ -3083,10 +3086,10 @@
 
     <div class="email-showcase">
       <div class="email-header">
-        <div><strong>From:</strong> <span dir="ltr">Deanship of Admissions and Registration &lt;deanship@uqu.edu.sa&gt;</span></div>
-        <div><strong>To:</strong> <span dir="ltr">admissions@target-institution.edu</span></div>
-        <div><strong>CC:</strong> <span dir="ltr">applicant@email.com</span></div>
-        <div class="subject" dir="ltr" style="text-align: left;">Official Academic Records — [Student Full Name]</div>
+        <div><strong>From:</strong> Deanship of Admissions and Registration &lt;dar@uqu.edu.sa&gt;</div>
+        <div><strong>To:</strong> admissions@target-institution.edu</div>
+        <div><strong>CC:</strong> applicant@email.com</div>
+        <div class="subject">Official Academic Records — [Student Full Name]</div>
       </div>
       <div class="email-body">Dear [Admissions / Evaluation / Human Resources] Team,
 
