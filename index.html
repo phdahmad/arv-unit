@@ -970,6 +970,76 @@
   }
 
   /* ─── FOOTER ─────────────────────────────────────── */
+  /* ─── FOOTER CHANGELOG ────────────────────────────── */
+  .changelog {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(244, 237, 224, 0.15);
+  }
+  .changelog-header {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin: 0 0 1.25rem;
+  }
+  .changelog-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  .changelog-entry {
+    font-size: 0.82rem;
+    line-height: 1.65;
+    color: var(--cream);
+    opacity: 0.85;
+  }
+  .changelog-version {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    margin: 0 0 0.35rem;
+    font-weight: 500;
+  }
+  .changelog-title {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    color: var(--cream);
+    margin: 0 0 0.5rem;
+    font-weight: 600;
+    opacity: 1;
+  }
+  .changelog-entry ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .changelog-entry li {
+    padding-right: 0.9rem;
+    position: relative;
+    font-size: 0.8rem;
+  }
+  .changelog-entry li::before {
+    content: '';
+    position: absolute;
+    top: 0.55rem;
+    right: 0;
+    width: 4px;
+    height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+    opacity: 0.6;
+  }
+
+  @media (max-width: 800px) {
+    .changelog-list { grid-template-columns: 1fr; gap: 1.5rem; }
+  }
+
   footer {
     background: var(--forest-dark);
     color: var(--cream);
@@ -1552,6 +1622,105 @@
   @media (max-width: 640px) {
     .signature-preview { padding: 1.75rem 1.5rem; }
     .sig-contacts { grid-template-columns: 1fr; }
+  }
+
+  /* ─── LIVE FORM LINK BADGE ────────────────────────── */
+  .live-link-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    background: var(--forest);
+    color: var(--cream);
+    padding: 0.9rem 1.5rem;
+    border-radius: 3px;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+  .full-form.verify ~ * .live-link-row,
+  .live-link-row.verify {
+    background: var(--burnt);
+  }
+  .live-link-info {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+  }
+  .live-link-pulse {
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(212, 169, 88, 0.8);
+    animation: pulse 2s infinite;
+    flex-shrink: 0;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(212, 169, 88, 0.7); }
+    70% { box-shadow: 0 0 0 8px rgba(212, 169, 88, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(212, 169, 88, 0); }
+  }
+  .live-link-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .live-link-text {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--cream);
+    font-weight: 500;
+  }
+  .live-link-btn {
+    background: var(--cream);
+    color: var(--forest-dark);
+    padding: 0.55rem 1.15rem;
+    border-radius: 3px;
+    font-size: 0.87rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+    font-family: var(--font-body);
+    letter-spacing: 0.01em;
+    flex-shrink: 0;
+  }
+  .live-link-btn:hover {
+    background: var(--gold);
+    color: var(--forest-dark);
+  }
+  .live-link-btn .arrow {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    transition: transform 0.2s;
+  }
+  .live-link-btn:hover .arrow {
+    transform: translate(-3px, 3px);
+  }
+  .live-link-url {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--cream);
+    opacity: 0.75;
+    margin-top: 0.2rem;
+    direction: ltr;
+    word-break: break-all;
+  }
+  .live-link-row.verify .live-link-label {
+    color: var(--cream);
+    opacity: 0.85;
+  }
+
+  @media (max-width: 640px) {
+    .live-link-row { flex-direction: column; align-items: stretch; text-align: right; }
+    .live-link-btn { justify-content: center; }
   }
 
   /* ─── FULL INTERACTIVE FORMS ──────────────────────── */
@@ -2445,6 +2614,22 @@
         Document Forwarding Service
       </p>
 
+      <div class="live-link-row">
+        <div class="live-link-info">
+          <span class="live-link-pulse"></span>
+          <div>
+            <span class="live-link-label">النموذج الحقيقي متاح الآن</span>
+            <div class="live-link-text">
+              رابط الاختبار للفريق
+              <span class="live-link-url">uqu.edu.sa/dar/App/Forms/Show/144937</span>
+            </div>
+          </div>
+        </div>
+        <a href="https://uqu.edu.sa/dar/App/Forms/Show/144937" target="_blank" rel="noopener" class="live-link-btn">
+          فتح النموذج <span class="arrow">↖</span>
+        </a>
+      </div>
+
       <div class="full-form-wrap">
         <div class="form-tabs">
           <button class="form-tab active" onclick="switchForm('f1', 'ar', this)">
@@ -2791,6 +2976,22 @@
       <p style="font-family: var(--font-display); font-style: italic; font-size: 1rem; color: var(--burnt); margin: 0; direction: ltr; text-align: right;">
         Credential Verification Service
       </p>
+
+      <div class="live-link-row verify">
+        <div class="live-link-info">
+          <span class="live-link-pulse"></span>
+          <div>
+            <span class="live-link-label">النموذج الحقيقي متاح الآن</span>
+            <div class="live-link-text">
+              رابط الاختبار للفريق
+              <span class="live-link-url">uqu.edu.sa/dar/App/Forms/Show/144949</span>
+            </div>
+          </div>
+        </div>
+        <a href="https://uqu.edu.sa/dar/App/Forms/Show/144949" target="_blank" rel="noopener" class="live-link-btn">
+          فتح النموذج <span class="arrow">↖</span>
+        </a>
+      </div>
 
       <div class="full-form-wrap">
         <div class="form-tabs">
@@ -3428,9 +3629,51 @@ This email and its attachments constitute an official transmission from Umm Al-Q
         </ul>
       </div>
     </div>
+
+    <div class="changelog">
+      <p class="changelog-header">سجل التغييرات</p>
+      <div class="changelog-list">
+
+        <div class="changelog-entry">
+          <p class="changelog-version">v1.3 — الحالية</p>
+          <p class="changelog-title">النماذج التفاعلية والاعتماد</p>
+          <ul>
+            <li>إضافة النماذج التفاعلية الكاملة بنسختين</li>
+            <li>ربط النماذج بالروابط الحقيقية على موقع الجامعة</li>
+            <li>تحديث البريد الرسمي إلى dar@uqu.edu.sa</li>
+            <li>ضبط محاذاة عناوين البريد إلى اليسار</li>
+            <li>اعتماد اختصار DAR كشعار للترويسة</li>
+          </ul>
+        </div>
+
+        <div class="changelog-entry">
+          <p class="changelog-version">v1.2</p>
+          <p class="changelog-title">البريد المؤسسي والتوقيع</p>
+          <ul>
+            <li>إضافة قسم البريد الرسمي للوحدة</li>
+            <li>معاينة توقيع الموظف الاحترافي</li>
+            <li>تحديد المتطلبات التقنية للبريد المشترك</li>
+            <li>ربط البريد بنظام التذاكر</li>
+          </ul>
+        </div>
+
+        <div class="changelog-entry">
+          <p class="changelog-version">v1.1</p>
+          <p class="changelog-title">التوسعة والمخططات البصرية</p>
+          <ul>
+            <li>إضافة مخطط الوحدة الشامل</li>
+            <li>مخطط بصري لدورة حياة التذكرة</li>
+            <li>توسيع قوالب البريد الرسمي</li>
+            <li>تحسين محاذاة النصوص العربية</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
     <div class="footer-bottom">
       <span>© جميع الحقوق محفوظة — عمادة القبول والتسجيل، جامعة أم القرى</span>
-      <span class="version">DRAFT v1.0 · للاعتماد الرسمي</span>
+      <span class="version">DRAFT v1.3 · للاعتماد الرسمي</span>
     </div>
   </div>
 </footer>
